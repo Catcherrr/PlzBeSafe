@@ -7,6 +7,10 @@ interface UsersAttributes {
     password: string;
     name: string;
     jwt: string;
+    image: string;
+    age: number;
+    gender: number;
+    address: string;
     level: number;
 }
 
@@ -16,8 +20,11 @@ export class Users extends Model<UsersAttributes> {
     public password!: string;
     public name!: string;
     public jwt!: string;
+    public image!: string;
+    public age!: number;
+    public gender!: number;
+    public address!: string;
     public level!: number;
-
     public static associations: {};
 }
 //----------------------------
@@ -26,6 +33,7 @@ Users.init(
         email: {
             type: DataTypes.STRING(100),
             allowNull: false,
+            unique: true,
         },
         password: {
             type: DataTypes.STRING(200),
@@ -37,12 +45,28 @@ Users.init(
         },
         jwt: {
             type: DataTypes.STRING(200),
-            allowNull: false,
+            allowNull: true,
+        },
+        image: {
+            type: DataTypes.STRING(200),
+            allowNull: true,
+        },
+        age: {
+            type: DataTypes.INTEGER(),
+            allowNull: true,
+        },
+        gender: {
+            type: DataTypes.TINYINT(),
+            allowNull: true,
+        },
+        address: {
+            type: DataTypes.STRING(80),
+            allowNull: true,
         },
         level: {
             type: DataTypes.TINYINT(),
             allowNull: false,
-            defaultValue: 1,
+            defaultValue: 0,
         },
     },
     {
