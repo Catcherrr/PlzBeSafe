@@ -1,11 +1,12 @@
 {
     "scripts": {
-        "server": "cd server && nodemon --watch \"./**/*.ts\" --exec \"ts-node\" ./server.ts",
-        "client": "cd client && yarn start",
-        "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
         "create_db": "ts-node ./server/migrations/create-db.ts",
         "create_table_users": "ts-node ./server/migrations/create-table/1.create-table-users.ts",
-        "migration_all": "ts-node ./server/migrations/migration-all-table.ts"
+        "migration_all": "ts-node ./server/migrations/migration-all-table.ts",
+        "api-docs": "swagger-cli bundle ./server/docs/openapi.yaml --outfile server/docs/swagger.yaml",
+        "server": "cd server && nodemon --watch \"./**/*.ts\" --exec \"ts-node\" ./server.ts",
+        "client": "cd client && yarn start",
+        "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
     },
     "dependencies": {
         "axios": "^0.27.2",

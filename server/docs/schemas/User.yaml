@@ -1,0 +1,24 @@
+type: object
+required:
+    - email
+    - password
+    - name
+properties:
+    email:
+        type: string
+        description: 유저 이메일
+    password:
+        type: string
+        description: 유저 비밀번호
+    name:
+        type: string
+        description: 유저 이름
+    age:
+        type: number
+        description: 유저 나이
+    gender:
+        type: string
+        description: 유저 성별
+    address:
+        type: string
+        description: 유저 주소

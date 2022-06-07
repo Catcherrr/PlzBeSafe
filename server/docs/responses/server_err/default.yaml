@@ -1,0 +1,8 @@
+description: 서버 오류
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 5000
+            message: 서버 오류

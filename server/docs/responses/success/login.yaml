@@ -1,0 +1,12 @@
+description: 로그인 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 로그인 성공
+            result:
+                {
+                    jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjU0NTQzOTc0LCJleHAiOjE2NTQ2MzAzNzQsInN1YiI6ImVtYWlsIn0.ppEcUz_MRh8cN_oSY26kZiAQ0UZPRHrimR8Yb8w1CKA',
+                }

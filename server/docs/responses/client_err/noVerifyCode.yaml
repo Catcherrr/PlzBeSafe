@@ -1,0 +1,8 @@
+description: 유효하지 않은 인증 코드
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 4047
+            message: 유효하지 않은 인증 코드입니다

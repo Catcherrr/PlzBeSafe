@@ -1,0 +1,13 @@
+type: object
+required:
+    - email
+properties:
+    email:
+        type: string
+        description: 유저 이메일
+    status:
+        type: string
+        description: 상태
+    code:
+        type: string
+        description: 인증 코드

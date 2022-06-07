@@ -1,0 +1,8 @@
+description: DB update 오류
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 5062
+            message: 데이터를 수정하지 못했습니다

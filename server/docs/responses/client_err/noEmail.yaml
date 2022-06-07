@@ -1,0 +1,8 @@
+description: 이메일 입력 X
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 4041
+            message: 이메일을 입력해주세요
