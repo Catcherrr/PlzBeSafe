@@ -33,8 +33,8 @@ app.listen(PORT, HOST, async () => {
 });
 
 // swagger 설정
-const swaggerSpec = YAML.load(path.join(__dirname, './modules/swagger.yaml'));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+const swaggerSpec = YAML.load(path.join(__dirname, './docs/swagger.yaml'));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 import index from './routers';
 app.use(index);
