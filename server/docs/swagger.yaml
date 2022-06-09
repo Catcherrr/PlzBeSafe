@@ -25,7 +25,7 @@
                     'post':
                         {
                             'summary': '유저 회원가입',
-                            'tags': [{ 'name': 'User' }],
+                            'tags': ['User'],
                             'requestBody':
                                 {
                                     'required': true,
@@ -36,15 +36,6 @@
                                                     'schema':
                                                         {
                                                             '$ref': '#/components/schemas/User',
-                                                            'example':
-                                                                {
-                                                                    'email': 'test1@test.com',
-                                                                    'password': '1234',
-                                                                    'name': '김민지',
-                                                                    'age': 23,
-                                                                    'gender': 0,
-                                                                    'address': '서울시 구로구',
-                                                                },
                                                         },
                                                 },
                                         },
@@ -106,7 +97,7 @@
                     'post':
                         {
                             'summary': '유저 로그인',
-                            'tags': [{ 'name': 'User' }],
+                            'tags': ['User'],
                             'requestBody':
                                 {
                                     'required': true,
@@ -171,7 +162,7 @@
                     'post':
                         {
                             'summary': '내 정보 조회',
-                            'tags': [{ 'name': 'User' }],
+                            'tags': ['User'],
                             'requestBody':
                                 {
                                     'required': true,
@@ -239,7 +230,7 @@
                     'patch':
                         {
                             'summary': '비밀번호 재설정',
-                            'tags': [{ 'name': 'User' }],
+                            'tags': ['User'],
                             'requestBody':
                                 {
                                     'required': true,
@@ -262,6 +253,11 @@
                                                                             'type': 'string',
                                                                             'example': '12345',
                                                                         },
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'jwt': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjU0NTQzOTc0LCJleHAiOjE2NTQ2MzAzNzQsInN1YiI6ImVtYWlsIn0.ppEcUz_MRh8cN_oSY26kZiAQ0UZPRHrimR8Yb8w1CKA',
+                                                                    'password': '012345',
                                                                 },
                                                         },
                                                 },
@@ -288,6 +284,366 @@
                                 },
                         },
                 },
+            '/user/changeInfo':
+                {
+                    'put':
+                        {
+                            'summary': '내 정보 수정',
+                            'tags': ['User'],
+                            'requestBody':
+                                {
+                                    'required': true,
+                                    'content':
+                                        {
+                                            'application/json':
+                                                {
+                                                    'schema':
+                                                        {
+                                                            'type': 'object',
+                                                            'properties':
+                                                                {
+                                                                    'jwt':
+                                                                        {
+                                                                            'type': 'string',
+                                                                        },
+                                                                    'name':
+                                                                        {
+                                                                            'type': 'string',
+                                                                        },
+                                                                    'age':
+                                                                        {
+                                                                            'type': 'number',
+                                                                        },
+                                                                    'gender':
+                                                                        {
+                                                                            'type': 'number',
+                                                                        },
+                                                                    'address':
+                                                                        {
+                                                                            'type': 'string',
+                                                                        },
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'jwt': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjU0NTQzOTc0LCJleHAiOjE2NTQ2MzAzNzQsInN1YiI6ImVtYWlsIn0.ppEcUz_MRh8cN_oSY26kZiAQ0UZPRHrimR8Yb8w1CKA',
+                                                                    'name': '김동의',
+                                                                    'age': 24,
+                                                                    'gender': 1,
+                                                                    'address': '경기도 의왕시',
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                },
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            'description': '정보 변경 성공',
+                                            'content':
+                                                {
+                                                    'application/json':
+                                                        {
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Success',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 2000,
+                                                                    'message': '정보 변경 성공',
+                                                                    'result':
+                                                                        {
+                                                                            'name': '김동의',
+                                                                            'age': 24,
+                                                                            'gender': 1,
+                                                                            'address1': '경기도',
+                                                                            'address2': '의왕시',
+                                                                        },
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                    '4043':
+                                        {
+                                            '$ref': '#/components/responses/NoToken',
+                                        },
+                                    '5000':
+                                        {
+                                            '$ref': '#/components/responses/DBUpdateError',
+                                        },
+                                },
+                        },
+                },
+            '/user/changeImage':
+                {
+                    'patch':
+                        {
+                            'summary': '내 프로필 사진 수정',
+                            'tags': ['User'],
+                            'requestBody':
+                                {
+                                    'required': true,
+                                    'content':
+                                        {
+                                            'application/json':
+                                                {
+                                                    'schema':
+                                                        {
+                                                            'type': 'object',
+                                                            'properties':
+                                                                {
+                                                                    'jwt':
+                                                                        {
+                                                                            'type': 'string',
+                                                                        },
+                                                                    'url':
+                                                                        {
+                                                                            'type': 'string',
+                                                                        },
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'jwt': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjU0NTQzOTc0LCJleHAiOjE2NTQ2MzAzNzQsInN1YiI6ImVtYWlsIn0.ppEcUz_MRh8cN_oSY26kZiAQ0UZPRHrimR8Yb8w1CKA',
+                                                                    'url': 'https://m.blog.naver.com/fkdin/222107578687',
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                },
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            'description': '이미지 변경 성공',
+                                            'content':
+                                                {
+                                                    'application/json':
+                                                        {
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Success',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 2000,
+                                                                    'message': '이미지 변경 성공',
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                    '4043':
+                                        {
+                                            '$ref': '#/components/responses/NoToken',
+                                        },
+                                    '5000':
+                                        {
+                                            '$ref': '#/components/responses/DBUpdateError',
+                                        },
+                                },
+                        },
+                },
+            '/user/resign':
+                {
+                    'delete':
+                        {
+                            'summary': '회원 탈퇴',
+                            'tags': ['User'],
+                            'requestBody':
+                                {
+                                    'required': true,
+                                    'content':
+                                        {
+                                            'application/json':
+                                                {
+                                                    'schema':
+                                                        {
+                                                            'type': 'object',
+                                                            'properties':
+                                                                {
+                                                                    'jwt':
+                                                                        {
+                                                                            'type': 'string',
+                                                                        },
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'jwt': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjU0NTQzOTc0LCJleHAiOjE2NTQ2MzAzNzQsInN1YiI6ImVtYWlsIn0.ppEcUz_MRh8cN_oSY26kZiAQ0UZPRHrimR8Yb8w1CKA',
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                },
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            'description': '회원 탈퇴 성공',
+                                            'content':
+                                                {
+                                                    'application/json':
+                                                        {
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Success',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 2000,
+                                                                    'message': '회원 탈퇴 성공',
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                    '4043':
+                                        {
+                                            '$ref': '#/components/responses/NoToken',
+                                        },
+                                    '5000':
+                                        {
+                                            '$ref': '#/components/responses/DBUpdateError',
+                                        },
+                                },
+                        },
+                },
+            '/verify/init':
+                {
+                    'post': { 'summary': '인증 요청', 'tags': ['Verify'] },
+                    'requestBody':
+                        {
+                            'required': true,
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    'type': 'object',
+                                                    'properties':
+                                                        {
+                                                            'email':
+                                                                {
+                                                                    'type': 'string',
+                                                                },
+                                                        },
+                                                    'example':
+                                                        {
+                                                            'email': 'catcherrr.official@gmail.com',
+                                                        },
+                                                },
+                                        },
+                                },
+                        },
+                    'responses':
+                        {
+                            '2000':
+                                {
+                                    '$ref': '#/components/responses/SendMailVerifySuccess',
+                                },
+                            '4043':
+                                {
+                                    '$ref': '#/components/responses/NoEmailError',
+                                },
+                            '5061':
+                                {
+                                    '$ref': '#/components/responses/DBInsertError',
+                                },
+                            '5062':
+                                {
+                                    '$ref': '#/components/responses/DBUpdateError',
+                                },
+                            '5063':
+                                { '$ref': '#/components/responses/EmailError' },
+                        },
+                },
+            '/verify/check/{num}':
+                {
+                    'get':
+                        {
+                            'summary': '인증 코드가 포함된 링크 열기',
+                            'tags': ['Verify'],
+                            'parameters':
+                                [{ 'code': '../parameters/codeVerify.yaml' }],
+                        },
+                    'responses':
+                        {
+                            '2000':
+                                {
+                                    '$ref': '#/components/responses/SendMailVerifySuccess',
+                                },
+                            '4043':
+                                {
+                                    '$ref': '#/components/responses/NoEmailError',
+                                },
+                            '4047':
+                                {
+                                    '$ref': '#/components/responses/NoVerifyCodeError',
+                                },
+                            '5061':
+                                {
+                                    '$ref': '#/components/responses/DBInsertError',
+                                },
+                            '5062':
+                                {
+                                    '$ref': '#/components/responses/DBUpdateError',
+                                },
+                        },
+                },
+            '/verify/delete':
+                {
+                    'delete':
+                        {
+                            'summary': '탈퇴 시에 이메일 인증 데이터도 삭제',
+                            'tags': ['Verify'],
+                            'parameters':
+                                [{ 'code': '../parameters/deleteVerify.yaml' }],
+                        },
+                    'responses':
+                        {
+                            '2000':
+                                {
+                                    'description': '인증 데이터 삭제 성공',
+                                    'content':
+                                        {
+                                            'application/json':
+                                                {
+                                                    'schema':
+                                                        {
+                                                            '$ref': '#/components/schemas/Success',
+                                                        },
+                                                    'example':
+                                                        {
+                                                            'status': 2000,
+                                                            'message': '인증 데이터 삭제 성공',
+                                                        },
+                                                },
+                                        },
+                                },
+                            '4043':
+                                {
+                                    '$ref': '#/components/responses/NoEmailError',
+                                },
+                            '5061':
+                                {
+                                    'description': 'DB delete 오류',
+                                    'content':
+                                        {
+                                            'application/json':
+                                                {
+                                                    'schema':
+                                                        {
+                                                            '$ref': '#/components/schemas/Error',
+                                                        },
+                                                    'example':
+                                                        {
+                                                            'status': 5064,
+                                                            'message': '데이터를 삭제하지 못했습니다',
+                                                        },
+                                                },
+                                        },
+                                },
+                        },
+                },
         },
     'components':
         {
@@ -295,7 +651,7 @@
                 {
                     'code':
                         {
-                            'name': 'code',
+                            'name': 'num',
                             'in': 'path',
                             'required': true,
                             'description': '인증 코드',
@@ -332,7 +688,7 @@
                                         },
                                     'gender':
                                         {
-                                            'type': 'string',
+                                            'type': 'number',
                                             'description': '유저 성별',
                                         },
                                     'address':
@@ -340,6 +696,15 @@
                                             'type': 'string',
                                             'description': '유저 주소',
                                         },
+                                },
+                            'example':
+                                {
+                                    'email': 'test1@test.com',
+                                    'password': '1234',
+                                    'name': '김민지',
+                                    'age': 23,
+                                    'gender': 0,
+                                    'address': '서울시 구로구',
                                 },
                         },
                     'Error':

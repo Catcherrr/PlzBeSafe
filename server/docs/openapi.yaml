@@ -11,7 +11,7 @@ servers:
     - url: http://localhost:1234/api
       description: 프로덕트 서버
 paths:
-    $ref: './paths/user.yaml'
+    $ref: './paths/_index.yaml'
 components:
     parameters:
         $ref: './parameters/_index.yaml'

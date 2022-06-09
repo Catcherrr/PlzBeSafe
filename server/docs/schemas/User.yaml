@@ -17,8 +17,17 @@ properties:
         type: number
         description: 유저 나이
     gender:
-        type: string
+        type: number
         description: 유저 성별
     address:
         type: string
         description: 유저 주소
+example:
+    {
+        email: 'test1@test.com',
+        password: '1234',
+        name: '김민지',
+        age: 23,
+        gender: 0,
+        address: '서울시 구로구',
+    }

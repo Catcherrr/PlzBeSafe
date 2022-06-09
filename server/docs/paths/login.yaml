@@ -1,0 +1,19 @@
+post:
+    summary: 유저 로그인
+    tags:
+        - User
+    requestBody:
+        $ref: '../requestBodies/loginUser.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/login.yaml'
+        4041:
+            $ref: '../responses/client_err/noEmail.yaml'
+        4042:
+            $ref: '../responses/client_err/noPassword.yaml'
+        4045:
+            $ref: '../responses/client_err/wrongEmail.yaml'
+        4046:
+            $ref: '../responses/client_err/wrongPassword.yaml'
+        5000:
+            $ref: '../responses/server_err/default.yaml'

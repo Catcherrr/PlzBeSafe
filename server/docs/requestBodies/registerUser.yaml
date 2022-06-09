@@ -3,12 +3,3 @@ content:
     application/json:
         schema:
             $ref: '../schemas/User.yaml'
-            example:
-                {
-                    email: 'test1@test.com',
-                    password: '1234',
-                    name: '김민지',
-                    age: 23,
-                    gender: 0,
-                    address: '서울시 구로구',
-                }

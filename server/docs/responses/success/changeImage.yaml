@@ -1,0 +1,8 @@
+description: 이미지 변경 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 이미지 변경 성공

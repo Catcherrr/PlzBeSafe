@@ -6,12 +6,19 @@ content:
             properties:
                 jwt:
                     type: string
-                    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjU0NTQzOTc0LCJleHAiOjE2NTQ2MzAzNzQsInN1YiI6ImVtYWlsIn0.ppEcUz_MRh8cN_oSY26kZiAQ0UZPRHrimR8Yb8w1CKA'
-                password:
+                name:
                     type: string
-                    example: '12345'
+                age:
+                    type: number
+                gender:
+                    type: number
+                address:
+                    type: string
             example:
                 {
                     jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjU0NTQzOTc0LCJleHAiOjE2NTQ2MzAzNzQsInN1YiI6ImVtYWlsIn0.ppEcUz_MRh8cN_oSY26kZiAQ0UZPRHrimR8Yb8w1CKA',
-                    password: '012345',
+                    name: '김동의',
+                    age: 24,
+                    gender: 1,
+                    address: '경기도 의왕시',
                 }
