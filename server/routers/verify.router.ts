@@ -5,5 +5,6 @@ const verifyRouter = Router();
 
 verifyRouter.post('/init', verifyController.requestVerify);
 verifyRouter.get('/check/:num', verifyController.completeVerify);
+verifyRouter.delete('/delete', verifyController.deleteVerify);
 
 export { verifyRouter };

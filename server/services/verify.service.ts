@@ -15,8 +15,8 @@ export const updateVerify = async (
     );
 };
 
-export const removeVerify = (code: string) => {
-    return Verifies.destroy({ where: { code } });
+export const removeVerify = (email: string) => {
+    return Verifies.destroy({ where: { email } });
 };
 
 export const findStatusByEmailVerify = async (email: string) => {

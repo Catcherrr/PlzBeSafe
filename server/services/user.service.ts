@@ -8,10 +8,29 @@ export const insertUser = (user: {
     image: string;
     age: number;
     gender: number;
-    address: string;
+    address1: string;
+    address2: string;
     level: number;
 }) => {
     return Users.create(user);
+};
+
+export const updateInfoUser = (
+    jwt: string,
+    name: string,
+    age: number,
+    gender: number,
+    address1: string,
+    address2: string
+) => {
+    return Users.update(
+        { name, age, gender, address1, address2 },
+        { where: { jwt } }
+    );
+};
+
+export const updateImageUser = (jwt: string, url: string) => {
+    return Users.update({ image: url }, { where: { jwt } });
 };
 
 export const updatePasswordUser = (jwt: string, password: string) => {
@@ -31,4 +50,8 @@ export const findOneByEmailAndPasswordUser = (
     password: string
 ) => {
     return Users.findOne({ where: { email, password } });
+};
+
+export const deleteUser = (jwt: string) => {
+    return Users.destroy({ where: { jwt } });
 };

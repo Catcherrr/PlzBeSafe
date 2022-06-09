@@ -10,7 +10,8 @@ interface UsersAttributes {
     image: string;
     age: number;
     gender: number;
-    address: string;
+    address1: string;
+    address2: string;
     level: number;
 }
 
@@ -23,7 +24,8 @@ export class Users extends Model<UsersAttributes> {
     public image!: string;
     public age!: number;
     public gender!: number;
-    public address!: string;
+    public address1!: string;
+    public address2!: string;
     public level!: number;
     public static associations: {};
 }
@@ -59,8 +61,12 @@ Users.init(
             type: DataTypes.TINYINT(),
             allowNull: true,
         },
-        address: {
-            type: DataTypes.STRING(80),
+        address1: {
+            type: DataTypes.STRING(45),
+            allowNull: true,
+        },
+        address2: {
+            type: DataTypes.STRING(45),
             allowNull: true,
         },
         level: {
