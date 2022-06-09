@@ -1,9 +1,3 @@
-export interface controllersReturnForm {
-    status: number;
-    message: string;
-    responseData: Object;
-}
-
 export const statusCode = {
     ok: {
         defaultValue: 2000,
@@ -17,8 +11,9 @@ export const statusCode = {
         noPassword: 4042,
         noToken: 4043,
         noName: 4044,
-        noVerifyCode: 4046,
-        wrongEmailAndPassword: 4045,
+        wrongEmail: 4045,
+        wrongPassword: 4046,
+        noVerifyCode: 4047,
         noDataBase: 4050,
         conflictEmail: 4091,
     },
@@ -27,5 +22,8 @@ export const statusCode = {
         waiting: 5030,
         internalError: 5060,
         dbInsertError: 5061,
+        dbUpdateError: 5062,
+        dbSelectError: 5063,
+        smtpError: 5064,
     },
 };
