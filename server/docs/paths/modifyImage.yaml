@@ -1,0 +1,13 @@
+patch:
+    summary: 내 프로필 사진 수정
+    tags:
+        - User
+    requestBody:
+        $ref: '../requestBodies/modifyImage.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/changeImage.yaml'
+        4043:
+            $ref: '../responses/client_err/noToken.yaml'
+        5000:
+            $ref: '../responses/server_err/dbUpdateNot.yaml'

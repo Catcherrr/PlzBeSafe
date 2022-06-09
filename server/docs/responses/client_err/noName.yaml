@@ -1,0 +1,8 @@
+description: 이름 입력 X
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 4044
+            message: 이름을 입력해주세요

@@ -1,0 +1,8 @@
+description: 데이터베이스 X
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 4050
+            message: DB가 존재하지 않습니다

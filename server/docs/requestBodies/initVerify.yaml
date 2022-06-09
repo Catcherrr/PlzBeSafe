@@ -1,0 +1,9 @@
+required: true
+content:
+    application/json:
+        schema:
+            type: object
+            properties:
+                email:
+                    type: string
+            example: { email: 'catcherrr.official@gmail.com' }

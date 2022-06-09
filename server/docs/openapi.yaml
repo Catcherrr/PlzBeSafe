@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+    title: Please Be Safe WEB TEAM API docs
+    description: Please Be Safe WEB TEAM API 문서입니다
+    version: 1.0.0
+    license:
+        name: MIT
+servers:
+    - url: http://localhost:1234/api
+      description: 테스트 서버
+    - url: http://localhost:1234/api
+      description: 프로덕트 서버
+paths:
+    $ref: './paths/_index.yaml'
+components:
+    parameters:
+        $ref: './parameters/_index.yaml'
+    schemas:
+        $ref: './schemas/_index.yaml'
+    responses:
+        $ref: './responses/_index.yaml'

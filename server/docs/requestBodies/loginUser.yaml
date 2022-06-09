@@ -1,0 +1,11 @@
+required: true
+content:
+    application/json:
+        schema:
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
+            example: { email: 'test1@test.com', password: '1234' }

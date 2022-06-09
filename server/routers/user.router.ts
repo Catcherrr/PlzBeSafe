@@ -5,5 +5,10 @@ const userRouter = Router();
 
 userRouter.post('/register', userController.insertUser);
 userRouter.post('/login', userController.login);
+userRouter.post('/myinfo', userController.findMyInfo);
+userRouter.patch('/changePassword', userController.resetPassword);
+userRouter.put('/changeInfo', userController.modifyInfo);
+userRouter.patch('/changeImage', userController.modifyImage);
+userRouter.delete('/resign', userController.resign);
 
 export { userRouter };
