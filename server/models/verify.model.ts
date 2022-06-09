@@ -18,7 +18,7 @@ export class Verifies extends Model<VerifiesAttributes> {
 //----------------------------
 Verifies.init(
     {
-        email: { type: DataTypes.STRING(100), allowNull: false },
+        email: { type: DataTypes.STRING(100), allowNull: false, unique: true },
         status: {
             type: DataTypes.STRING(50),
             allowNull: false,
