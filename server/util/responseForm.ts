@@ -24,6 +24,7 @@ export const statusCode = {
         dbInsertError: 5061,
         dbUpdateError: 5062,
         dbSelectError: 5063,
-        smtpError: 5064,
+        dbDeleteError: 5064,
+        smtpError: 5065,
     },
 };
