@@ -166,13 +166,13 @@ export const deleteVerify = async (req: Request, res: Response) => {
             }
         })
         .catch((err) => {
-            console.log('[verify/completeVerify/findByCodeVerify] ' + err);
+            console.log('[verify/deleteVerify/removeVerify] ' + err);
 
             serviceReturnForm = {
-                status: statusCode.client_error.noVerifyCode,
-                message: '유효하지 않은 인증 코드입니다',
+                status: statusCode.server_error.dbDeleteError,
+                message: '인증 데이터를 삭제하지 못했습니다',
             };
-            res.status(statusTrans(statusCode.client_error.noVerifyCode)).json(
+            res.status(statusTrans(statusCode.server_error.dbDeleteError)).json(
                 serviceReturnForm
             );
         });

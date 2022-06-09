@@ -149,7 +149,7 @@ export const login = async (req: Request, res: Response) => {
                             serviceReturnForm = {
                                 status: statusCode.ok.defaultValue,
                                 message: '로그인 성공',
-                                jwt: data.jwt,
+                                result: { jwt: data.jwt },
                             };
                             res.status(
                                 statusTrans(statusCode.ok.defaultValue)
@@ -211,8 +211,8 @@ export const findMyInfo = async (req: Request, res: Response) => {
                     data.dataValues;
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    data: info,
                     message: '내 정보 조회 성공',
+                    result: { info },
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
                     serviceReturnForm
@@ -293,9 +293,12 @@ export const modifyInfo = async (req: Request, res: Response) => {
     return updateInfo(jwt, name, age, gender, address1, address2)
         .then((data: any) => {
             if (data) {
+                const { password, jwt, id, email, level, ...info } =
+                    data.dataValues;
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
                     message: '정보 변경 성공',
+                    result: { info },
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
                     serviceReturnForm
