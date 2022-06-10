@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from './home/Home';
+import Main from './Main/Main';
 
 const RoutesComponent = () => {
     return (
         <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Main />} />
+            <Route path="/first" render={() => <h1>처음</h1>} />
         </Routes>
     );
 };

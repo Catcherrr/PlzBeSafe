@@ -1,15 +1,56 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import {
+    CircularProgress,
+    Grid,
+    Typography,
+    InputLabel,
+    MenuItem,
+    FormControl,
+    Select,
+    Button,
+} from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
 
-const Background = styled.div`
-    display: flexbox;
-    justify-content: flex-start;
-    height: 1080px;
-    background: green;
-`;
+import useStyles from './styles';
 
-const Navigator = () => {
-    return <Background>네비게이터</Background>;
+const Navigator = (props: any) => {
+    const classes = useStyles();
+    const [type, setType] = useState('restaurants');
+    const [rating, setRating] = useState('');
+    return (
+        <div className={classes.container}>
+            <Button
+                onClick={() => {
+                    console.log(111);
+                }}
+            >
+                <HomeIcon />
+            </Button>
+            <Typography variant="h4">
+                Restaurants, Hotels & Attractions aound you
+            </Typography>
+            <FormControl className={classes.formControl}>
+                <InputLabel>Type</InputLabel>
+                <Select value={type} onChange={(e) => setType(e.target.value)}>
+                    <MenuItem value="restaurants">Restaurants</MenuItem>
+                    <MenuItem value="hotels">Hotels</MenuItem>
+                    <MenuItem value="attractions">Attractions</MenuItem>
+                </Select>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+                <InputLabel>Rating</InputLabel>
+                <Select
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
+                >
+                    <MenuItem value={0}>All</MenuItem>
+                    <MenuItem value={3}>Above 3.0</MenuItem>
+                    <MenuItem value={4}>Above 4.0</MenuItem>
+                    <MenuItem value={4.5}>Above 4.5</MenuItem>
+                </Select>
+            </FormControl>
+        </div>
+    );
 };
 
 export default Navigator;
