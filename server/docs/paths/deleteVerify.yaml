@@ -3,11 +3,17 @@ delete:
     tags:
         - Verify
     parameters:
-        - code: '../parameters/deleteVerify.yaml'
-responses:
-    2000:
-        $ref: '../responses/success/deleteVerify.yaml'
-    4043:
-        $ref: '../responses/client_err/noEmail.yaml'
-    5061:
-        $ref: '../responses/server_err/dbDeleteNot.yaml'
+        - in: path
+          name: email
+          required: true
+          description: 이메일
+          schema:
+              type: string
+              example: 'gkswlgp456@gmail.com'
+    responses:
+        2000:
+            $ref: '../responses/success/deleteVerify.yaml'
+        4043:
+            $ref: '../responses/client_err/noEmail.yaml'
+        5061:
+            $ref: '../responses/server_err/dbDeleteNot.yaml'

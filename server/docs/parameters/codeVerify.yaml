@@ -1,6 +1,0 @@
-name: num
-in: path
-required: true
-description: 인증 코드
-schema:
-    type: string

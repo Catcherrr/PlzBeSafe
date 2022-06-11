@@ -3,15 +3,20 @@ get:
     tags:
         - Verify
     parameters:
-        - code: '../parameters/codeVerify.yaml'
-responses:
-    2000:
-        $ref: '../responses/success/sendMailVerify.yaml'
-    4043:
-        $ref: '../responses/client_err/noEmail.yaml'
-    4047:
-        $ref: '../responses/client_err/noVerifyCode.yaml'
-    5061:
-        $ref: '../responses/server_err/dbInsertNot.yaml'
-    5062:
-        $ref: '../responses/server_err/dbUpdateNot.yaml'
+        - in: path
+          name: num
+          required: true
+          description: 인증 코드
+          schema:
+              type: string
+    responses:
+        2000:
+            $ref: '../responses/success/sendMailVerify.yaml'
+        4043:
+            $ref: '../responses/client_err/noEmail.yaml'
+        4047:
+            $ref: '../responses/client_err/noVerifyCode.yaml'
+        5061:
+            $ref: '../responses/server_err/dbInsertNot.yaml'
+        5062:
+            $ref: '../responses/server_err/dbUpdateNot.yaml'
