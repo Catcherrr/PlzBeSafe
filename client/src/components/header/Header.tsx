@@ -10,7 +10,7 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import useStyles from './style';
+import useStyles from './styles';
 import { Link } from 'react-router-dom';
 
 type Props = {
@@ -26,13 +26,15 @@ function Header({ onClick }: Props) {
                     <div className={classes.left}>
                         <ButtonBase
                             className={classes.hamburgerIcon}
-                            onClick={() => onClick()}
+                            onClick={onClick}
                         >
                             <MenuIcon />
                         </ButtonBase>
-                        <Typography variant="h5" className={classes.title}>
-                            Please Be Safe
-                        </Typography>
+                        <Link to="/">
+                            <Typography variant="h5" className={classes.title}>
+                                Please Be Safe
+                            </Typography>
+                        </Link>
                     </div>
                 </Box>
                 <Box display="flex">
@@ -48,11 +50,11 @@ function Header({ onClick }: Props) {
                             }}
                         />
                     </div>
-                    <div className={classes.user}>
+                    <Link to="/login" className={classes.user}>
                         <div className={classes.userIcon}>
                             <AccountCircleIcon />
                         </div>
-                    </div>
+                    </Link>
                 </Box>
             </Toolbar>
         </AppBar>

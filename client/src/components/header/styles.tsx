@@ -70,7 +70,6 @@ export default makeStyles((theme) => ({
         padding: theme.spacing(0, 1),
         height: '100%',
         position: 'absolute',
-        pointerEvents: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
