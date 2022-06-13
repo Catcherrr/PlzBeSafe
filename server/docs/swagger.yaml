@@ -508,52 +508,58 @@
                 },
             '/verify/init':
                 {
-                    'post': { 'summary': '인증 요청', 'tags': ['Verify'] },
-                    'requestBody':
+                    'post':
                         {
-                            'required': true,
-                            'content':
+                            'summary': '인증 요청',
+                            'tags': ['Verify'],
+                            'requestBody':
                                 {
-                                    'application/json':
+                                    'required': true,
+                                    'content':
                                         {
-                                            'schema':
+                                            'application/json':
                                                 {
-                                                    'type': 'object',
-                                                    'properties':
+                                                    'schema':
                                                         {
-                                                            'email':
+                                                            'type': 'object',
+                                                            'properties':
                                                                 {
-                                                                    'type': 'string',
+                                                                    'email':
+                                                                        {
+                                                                            'type': 'string',
+                                                                        },
                                                                 },
-                                                        },
-                                                    'example':
-                                                        {
-                                                            'email': 'catcherrr.official@gmail.com',
+                                                            'example':
+                                                                {
+                                                                    'email': 'catcherrr.official@gmail.com',
+                                                                },
                                                         },
                                                 },
                                         },
                                 },
-                        },
-                    'responses':
-                        {
-                            '2000':
+                            'responses':
                                 {
-                                    '$ref': '#/components/responses/SendMailVerifySuccess',
+                                    '2000':
+                                        {
+                                            '$ref': '#/components/responses/SendMailVerifySuccess',
+                                        },
+                                    '4043':
+                                        {
+                                            '$ref': '#/components/responses/NoEmailError',
+                                        },
+                                    '5061':
+                                        {
+                                            '$ref': '#/components/responses/DBInsertError',
+                                        },
+                                    '5062':
+                                        {
+                                            '$ref': '#/components/responses/DBUpdateError',
+                                        },
+                                    '5063':
+                                        {
+                                            '$ref': '#/components/responses/EmailError',
+                                        },
                                 },
-                            '4043':
-                                {
-                                    '$ref': '#/components/responses/NoEmailError',
-                                },
-                            '5061':
-                                {
-                                    '$ref': '#/components/responses/DBInsertError',
-                                },
-                            '5062':
-                                {
-                                    '$ref': '#/components/responses/DBUpdateError',
-                                },
-                            '5063':
-                                { '$ref': '#/components/responses/EmailError' },
                         },
                 },
             '/verify/check/{num}':
@@ -563,81 +569,101 @@
                             'summary': '인증 코드가 포함된 링크 열기',
                             'tags': ['Verify'],
                             'parameters':
-                                [{ 'code': '../parameters/codeVerify.yaml' }],
-                        },
-                    'responses':
-                        {
-                            '2000':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'num',
+                                        'required': true,
+                                        'description': '인증 코드',
+                                        'schema': { 'type': 'string' },
+                                    },
+                                ],
+                            'responses':
                                 {
-                                    '$ref': '#/components/responses/SendMailVerifySuccess',
-                                },
-                            '4043':
-                                {
-                                    '$ref': '#/components/responses/NoEmailError',
-                                },
-                            '4047':
-                                {
-                                    '$ref': '#/components/responses/NoVerifyCodeError',
-                                },
-                            '5061':
-                                {
-                                    '$ref': '#/components/responses/DBInsertError',
-                                },
-                            '5062':
-                                {
-                                    '$ref': '#/components/responses/DBUpdateError',
+                                    '2000':
+                                        {
+                                            '$ref': '#/components/responses/SendMailVerifySuccess',
+                                        },
+                                    '4043':
+                                        {
+                                            '$ref': '#/components/responses/NoEmailError',
+                                        },
+                                    '4047':
+                                        {
+                                            '$ref': '#/components/responses/NoVerifyCodeError',
+                                        },
+                                    '5061':
+                                        {
+                                            '$ref': '#/components/responses/DBInsertError',
+                                        },
+                                    '5062':
+                                        {
+                                            '$ref': '#/components/responses/DBUpdateError',
+                                        },
                                 },
                         },
                 },
-            '/verify/delete':
+            '/verify/delete/{email}':
                 {
                     'delete':
                         {
                             'summary': '탈퇴 시에 이메일 인증 데이터도 삭제',
                             'tags': ['Verify'],
                             'parameters':
-                                [{ 'code': '../parameters/deleteVerify.yaml' }],
-                        },
-                    'responses':
-                        {
-                            '2000':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'email',
+                                        'required': true,
+                                        'description': '이메일',
+                                        'schema':
+                                            {
+                                                'type': 'string',
+                                                'example': 'gkswlgp456@gmail.com',
+                                            },
+                                    },
+                                ],
+                            'responses':
                                 {
-                                    'description': '인증 데이터 삭제 성공',
-                                    'content':
+                                    '2000':
                                         {
-                                            'application/json':
+                                            'description': '인증 데이터 삭제 성공',
+                                            'content':
                                                 {
-                                                    'schema':
+                                                    'application/json':
                                                         {
-                                                            '$ref': '#/components/schemas/Success',
-                                                        },
-                                                    'example':
-                                                        {
-                                                            'status': 2000,
-                                                            'message': '인증 데이터 삭제 성공',
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Success',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 2000,
+                                                                    'message': '인증 데이터 삭제 성공',
+                                                                },
                                                         },
                                                 },
                                         },
-                                },
-                            '4043':
-                                {
-                                    '$ref': '#/components/responses/NoEmailError',
-                                },
-                            '5061':
-                                {
-                                    'description': 'DB delete 오류',
-                                    'content':
+                                    '4043':
                                         {
-                                            'application/json':
+                                            '$ref': '#/components/responses/NoEmailError',
+                                        },
+                                    '5061':
+                                        {
+                                            'description': 'DB delete 오류',
+                                            'content':
                                                 {
-                                                    'schema':
+                                                    'application/json':
                                                         {
-                                                            '$ref': '#/components/schemas/Error',
-                                                        },
-                                                    'example':
-                                                        {
-                                                            'status': 5064,
-                                                            'message': '데이터를 삭제하지 못했습니다',
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Error',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 5064,
+                                                                    'message': '데이터를 삭제하지 못했습니다',
+                                                                },
                                                         },
                                                 },
                                         },
@@ -647,17 +673,6 @@
         },
     'components':
         {
-            'parameters':
-                {
-                    'code':
-                        {
-                            'name': 'num',
-                            'in': 'path',
-                            'required': true,
-                            'description': '인증 코드',
-                            'schema': { 'type': 'string' },
-                        },
-                },
             'schemas':
                 {
                     'User':
@@ -705,6 +720,29 @@
                                     'age': 23,
                                     'gender': 0,
                                     'address': '서울시 구로구',
+                                },
+                        },
+                    'Verify':
+                        {
+                            'type': 'object',
+                            'required': ['email'],
+                            'properties':
+                                {
+                                    'email':
+                                        {
+                                            'type': 'string',
+                                            'description': '유저 이메일',
+                                        },
+                                    'status':
+                                        {
+                                            'type': 'string',
+                                            'description': '상태',
+                                        },
+                                    'code':
+                                        {
+                                            'type': 'string',
+                                            'description': '인증 코드',
+                                        },
                                 },
                         },
                     'Error':

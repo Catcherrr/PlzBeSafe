@@ -17,5 +17,5 @@
     $ref: './initVerify.yaml'
 /verify/check/{num}:
     $ref: './codeVerify.yaml'
-/verify/delete:
+/verify/delete/{email}:
     $ref: './deleteVerify.yaml'

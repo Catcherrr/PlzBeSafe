@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize-typescript';
+import { Sequelize } from 'sequelize';
 import { config } from '../config/config';
 
 const { database, username, password, host } = config.development;
