@@ -39,11 +39,11 @@ export const updatePost = async (
 
 export const findAllByPagePosts = (page: number) => {
     const limit = 10;
-    let offset = 0 + (page - 1) * limit;
+    let offset = page > 1 ? (page - 1) * limit : 0;
     return Posts.findAll({
         offset,
         limit,
-        order: [['data', 'ASC']],
+        order: [['createdAt', 'DESC']],
     });
 };
 
