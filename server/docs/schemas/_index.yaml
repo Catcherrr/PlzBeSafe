@@ -2,6 +2,8 @@ User:
     $ref: './User.yaml'
 Verify:
     $ref: './Verify.yaml'
+Post:
+    $ref: './Post.yaml'
 Error:
     $ref: './Error.yaml'
 Success:

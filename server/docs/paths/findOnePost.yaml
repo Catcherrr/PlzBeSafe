@@ -1,0 +1,19 @@
+get:
+    summary: 글 한 개 조회
+    tags:
+        - Post
+    parameters:
+        - in: path
+          name: id
+          required: true
+          description: 글 id로 1개의 글 조회
+          schema:
+              type: number
+              example: 1
+    responses:
+        2000:
+            $ref: '../responses/success/findOnePost.yaml'
+        4048:
+            $ref: '../responses/client_err/noPostContent.yaml'
+        5063:
+            $ref: '../responses/server_err/dbSelectNot.yaml'

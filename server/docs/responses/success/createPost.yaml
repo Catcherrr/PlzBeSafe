@@ -1,0 +1,9 @@
+description: 글쓰기 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 글쓰기 성공
+            result: { id: 13 }

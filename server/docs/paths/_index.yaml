@@ -19,3 +19,14 @@
     $ref: './codeVerify.yaml'
 /verify/delete/{email}:
     $ref: './deleteVerify.yaml'
+
+/post/all/{page}:
+    $ref: './findAllByPagePost.yaml'
+/post/one/{id}:
+    $ref: './findOnePost.yaml'
+/post/create:
+    $ref: './createPost.yaml'
+/post/modify/{id}:
+    $ref: './updatePost.yaml'
+/post/delete/{id}:
+    $ref: './deletePost.yaml'
