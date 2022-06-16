@@ -12,7 +12,7 @@ export const insertUser = (user: {
     address2: string;
     level: number;
 }) => {
-    return Users.create(user);
+    return Users.create({ id: 0, ...user });
 };
 
 export const updateInfoUser = (
@@ -52,6 +52,8 @@ export const findOneByEmailAndPasswordUser = (
     return Users.findOne({ where: { email, password } });
 };
 
-export const deleteUser = (jwt: string) => {
-    return Users.destroy({ where: { jwt } });
+export const deleteUser = async (jwt: string) => {
+    return Users.findOne({ where: { jwt } }).then((data: any) =>
+        Users.destroy({ where: { id: data.id } })
+    );
 };
