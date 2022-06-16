@@ -6,4 +6,5 @@ const { database, username, password, host } = config.development;
 export const sequelize = new Sequelize(database, username, password, {
     host: host,
     dialect: 'mysql',
+    timezone: '+09:00',
 });
