@@ -14,6 +14,8 @@ export const statusCode = {
         wrongEmail: 4045,
         wrongPassword: 4046,
         noVerifyCode: 4047,
+        noPostContent: 4048,
+        noComentContent: 4049,
         noDataBase: 4050,
         conflictEmail: 4091,
     },
