@@ -218,13 +218,13 @@ export const findOnePost = async (req: Request, res: Response) => {
 export const findAllByPagePost = async (req: Request, res: Response) => {
     const { page } = req.params;
 
-    return inquirePost(Number(page))
+    return pagenationPost(Number(page))
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
                     message: '페이지 당 글 찾기 성공',
-                    result: { data },
+                    result: data,
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
                     serviceReturnForm
