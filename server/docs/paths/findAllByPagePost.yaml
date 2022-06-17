@@ -1,0 +1,19 @@
+get:
+    summary: 페이지당 글 10개 조회
+    tags:
+        - Post
+    parameters:
+        - in: path
+          name: page
+          required: true
+          description: page로 10개의 글 조회
+          schema:
+              type: number
+              example: 1
+    responses:
+        2000:
+            $ref: '../responses/success/findAllByPagePost.yaml'
+        4048:
+            $ref: '../responses/client_err/noPostContent.yaml'
+        5063:
+            $ref: '../responses/server_err/dbSelectNot.yaml'

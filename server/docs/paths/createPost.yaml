@@ -1,0 +1,13 @@
+post:
+    summary: 글 작성
+    tags:
+        - Post
+    requestBody:
+        $ref: '../requestBodies/createPost.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/createPost.yaml'
+        4048:
+            $ref: '../responses/client_err/noPostContent.yaml'
+        5061:
+            $ref: '../responses/server_err/dbInsertNot.yaml'

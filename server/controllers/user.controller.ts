@@ -363,7 +363,7 @@ export const modifyImage = async (req: Request, res: Response) => {
 };
 // 회원 탈퇴
 export const resign = async (req: Request, res: Response) => {
-    const jwt = req.body;
+    const { jwt } = req.params;
 
     return deleteUser(jwt)
         .then((data: any) => {
@@ -388,10 +388,10 @@ export const resign = async (req: Request, res: Response) => {
         .catch((err: any) => {
             console.log('[user/resign/deleteUser] ' + err);
             serviceReturnForm = {
-                status: statusCode.server_error.dbUpdateError,
+                status: statusCode.server_error.dbDeleteError,
                 message: '회원 탈퇴 실패',
             };
-            res.status(statusTrans(statusCode.server_error.dbUpdateError)).json(
+            res.status(statusTrans(statusCode.server_error.dbDeleteError)).json(
                 serviceReturnForm
             );
             return;
