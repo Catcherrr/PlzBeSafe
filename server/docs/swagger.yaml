@@ -478,22 +478,7 @@
                                 {
                                     '2000':
                                         {
-                                            'description': '회원 탈퇴 성공',
-                                            'content':
-                                                {
-                                                    'application/json':
-                                                        {
-                                                            'schema':
-                                                                {
-                                                                    '$ref': '#/components/schemas/Success',
-                                                                },
-                                                            'example':
-                                                                {
-                                                                    'status': 2000,
-                                                                    'message': '회원 탈퇴 성공',
-                                                                },
-                                                        },
-                                                },
+                                            '$ref': '#/components/responses/DeleteUserSuccess',
                                         },
                                     '4043':
                                         {
@@ -627,22 +612,7 @@
                                 {
                                     '2000':
                                         {
-                                            'description': '인증 데이터 삭제 성공',
-                                            'content':
-                                                {
-                                                    'application/json':
-                                                        {
-                                                            'schema':
-                                                                {
-                                                                    '$ref': '#/components/schemas/Success',
-                                                                },
-                                                            'example':
-                                                                {
-                                                                    'status': 2000,
-                                                                    'message': '인증 데이터 삭제 성공',
-                                                                },
-                                                        },
-                                                },
+                                            '$ref': '#/components/responses/DeleteVerifySuccess',
                                         },
                                     '4043':
                                         {
@@ -676,38 +646,7 @@
                                 {
                                     '2000':
                                         {
-                                            'description': '페이지 당 글 찾기 성공',
-                                            'content':
-                                                {
-                                                    'application/json':
-                                                        {
-                                                            'schema':
-                                                                {
-                                                                    '$ref': '#/components/schemas/Success',
-                                                                },
-                                                            'example':
-                                                                {
-                                                                    'status': 2000,
-                                                                    'message': '페이지 당 글 찾기 성공',
-                                                                    'result':
-                                                                        {
-                                                                            'data':
-                                                                                {
-                                                                                    'id': 1,
-                                                                                    'userId': 2,
-                                                                                    'title': '돈 많이 번 사건',
-                                                                                    'content': '블라블라블라',
-                                                                                    'latitude': '37.34000000000000',
-                                                                                    'longitude': '126.55000000000000',
-                                                                                    'incident_date': '1970-01-01T00:03:40.000Z',
-                                                                                    'createdAt': '2022-06-16T17:16:18.000Z',
-                                                                                    'updatedAt': '2022-06-16T17:16:18.000Z',
-                                                                                    'deletedAt': null,
-                                                                                },
-                                                                        },
-                                                                },
-                                                        },
-                                                },
+                                            '$ref': '#/components/responses/SelectAllPostSuccess',
                                         },
                                     '4048':
                                         {
@@ -741,35 +680,7 @@
                                 {
                                     '2000':
                                         {
-                                            'description': '1개의 글 찾기 성공',
-                                            'content':
-                                                {
-                                                    'application/json':
-                                                        {
-                                                            'schema':
-                                                                {
-                                                                    '$ref': '#/components/schemas/Success',
-                                                                },
-                                                            'example':
-                                                                {
-                                                                    'status': 2000,
-                                                                    'message': '한 개의 글 찾기 성공',
-                                                                    'result':
-                                                                        {
-                                                                            'id': 1,
-                                                                            'userId': 2,
-                                                                            'title': '돈 많이 번 사건',
-                                                                            'content': '블라블라블라',
-                                                                            'latitude': '37.34000000000000',
-                                                                            'longitude': '126.55000000000000',
-                                                                            'incident_date': '1970-01-01T00:03:40.000Z',
-                                                                            'createdAt': '2022-06-16T17:16:18.000Z',
-                                                                            'updatedAt': '2022-06-16T17:16:18.000Z',
-                                                                            'deletedAt': null,
-                                                                        },
-                                                                },
-                                                        },
-                                                },
+                                            '$ref': '#/components/responses/SelectOnePostSuccess',
                                         },
                                     '4048':
                                         {
@@ -821,26 +732,7 @@
                                 {
                                     '2000':
                                         {
-                                            'description': '글쓰기 성공',
-                                            'content':
-                                                {
-                                                    'application/json':
-                                                        {
-                                                            'schema':
-                                                                {
-                                                                    '$ref': '#/components/schemas/Success',
-                                                                },
-                                                            'example':
-                                                                {
-                                                                    'status': 2000,
-                                                                    'message': '글쓰기 성공',
-                                                                    'result':
-                                                                        {
-                                                                            'id': 13,
-                                                                        },
-                                                                },
-                                                        },
-                                                },
+                                            '$ref': '#/components/responses/CreatePostSuccess',
                                         },
                                     '4048':
                                         {
@@ -892,22 +784,7 @@
                                 {
                                     '2000':
                                         {
-                                            'description': '글수정 성공',
-                                            'content':
-                                                {
-                                                    'application/json':
-                                                        {
-                                                            'schema':
-                                                                {
-                                                                    '$ref': '#/components/schemas/Success',
-                                                                },
-                                                            'example':
-                                                                {
-                                                                    'status': 2000,
-                                                                    'message': '글수정 성공',
-                                                                },
-                                                        },
-                                                },
+                                            '$ref': '#/components/responses/ModifyPostSuccess',
                                         },
                                     '4048':
                                         {
@@ -941,22 +818,7 @@
                                 {
                                     '2000':
                                         {
-                                            'description': '글삭제 성공',
-                                            'content':
-                                                {
-                                                    'application/json':
-                                                        {
-                                                            'schema':
-                                                                {
-                                                                    '$ref': '#/components/schemas/Success',
-                                                                },
-                                                            'example':
-                                                                {
-                                                                    'status': 2000,
-                                                                    'message': '글 삭제 성공',
-                                                                },
-                                                        },
-                                                },
+                                            '$ref': '#/components/responses/DeletePostSuccess',
                                         },
                                     '4048':
                                         {
@@ -980,6 +842,227 @@
                                                                 },
                                                         },
                                                 },
+                                        },
+                                },
+                        },
+                },
+            '/comment/all/{postId}':
+                {
+                    'get':
+                        {
+                            'summary': '글별로 댓글 전체 조회',
+                            'tags': ['Comment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'postId',
+                                        'required': true,
+                                        'description': 'postId로 댓글 전체 조회',
+                                        'schema':
+                                            { 'type': 'number', 'example': 1 },
+                                    },
+                                ],
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            '$ref': '#/components/responses/SelectAllCommentSuccess',
+                                        },
+                                    '4049':
+                                        {
+                                            '$ref': '#/paths/~1comment~1one~1%7Bid%7D/get/responses/4048',
+                                        },
+                                    '5063':
+                                        {
+                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                        },
+                                },
+                        },
+                },
+            '/comment/one/{id}':
+                {
+                    'get':
+                        {
+                            'summary': '댓글 한 개 조회',
+                            'tags': ['Comment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'id',
+                                        'required': true,
+                                        'description': '댓글 id로 1개의 댓글 조회',
+                                        'schema':
+                                            { 'type': 'number', 'example': 1 },
+                                    },
+                                ],
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            '$ref': '#/components/responses/SelectOneCommentSuccess',
+                                        },
+                                    '4048':
+                                        {
+                                            'description': '존재하지 않는 댓글이나 댓글 형식에 맞지 않으면 발생하는 오류',
+                                            'content':
+                                                {
+                                                    'application/json':
+                                                        {
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Error',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 4049,
+                                                                    'message': '존재하지 않는 댓글입니다',
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                    '5063':
+                                        {
+                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                        },
+                                },
+                        },
+                },
+            '/comment/create/{postId}':
+                {
+                    'post':
+                        {
+                            'summary': '댓글 작성',
+                            'tags': ['Comment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'postId',
+                                        'required': true,
+                                        'description': 'postId는 파라미터로 전달',
+                                        'schema':
+                                            { 'type': 'number', 'example': 1 },
+                                    },
+                                ],
+                            'requestBody':
+                                {
+                                    'required': true,
+                                    'content':
+                                        {
+                                            'application/json':
+                                                {
+                                                    'schema':
+                                                        {
+                                                            '$ref': '#/components/schemas/Comment',
+                                                        },
+                                                },
+                                        },
+                                },
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            '$ref': '#/components/responses/CreateCommentSuccess',
+                                        },
+                                    '4048':
+                                        {
+                                            '$ref': '#/paths/~1post~1create/post/responses/4048',
+                                        },
+                                    '4049':
+                                        {
+                                            '$ref': '#/paths/~1comment~1one~1%7Bid%7D/get/responses/4048',
+                                        },
+                                    '5061':
+                                        {
+                                            '$ref': '#/components/responses/DBInsertError',
+                                        },
+                                },
+                        },
+                },
+            '/comment/modify/{id}':
+                {
+                    'post':
+                        {
+                            'summary': '댓글 수정',
+                            'tags': ['Comment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'postId',
+                                        'required': true,
+                                        'description': 'postId는 파라미터로 전달',
+                                        'schema':
+                                            { 'type': 'number', 'example': 1 },
+                                    },
+                                ],
+                            'requestBody':
+                                {
+                                    'required': true,
+                                    'content':
+                                        {
+                                            'application/json':
+                                                {
+                                                    'schema':
+                                                        {
+                                                            '$ref': '#/components/schemas/Comment',
+                                                        },
+                                                },
+                                        },
+                                },
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            '$ref': '#/components/responses/ModifyCommentSuccess',
+                                        },
+                                    '4048':
+                                        {
+                                            '$ref': '#/paths/~1post~1create/post/responses/4048',
+                                        },
+                                    '4049':
+                                        {
+                                            '$ref': '#/paths/~1comment~1one~1%7Bid%7D/get/responses/4048',
+                                        },
+                                    '5062':
+                                        {
+                                            '$ref': '#/components/responses/DBUpdateError',
+                                        },
+                                },
+                        },
+                },
+            '/comment/delete/{id}':
+                {
+                    'delete':
+                        {
+                            'summary': '댓글 삭제',
+                            'tags': ['Comment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'id',
+                                        'required': true,
+                                        'description': '댓글 id',
+                                        'schema':
+                                            { 'type': 'number', 'example': 8 },
+                                    },
+                                ],
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            '$ref': '#/components/responses/DeleteCommentSuccess',
+                                        },
+                                    '4049':
+                                        {
+                                            '$ref': '#/paths/~1comment~1one~1%7Bid%7D/get/responses/4048',
+                                        },
+                                    '5061':
+                                        {
+                                            '$ref': '#/paths/~1post~1delete~1%7Bid%7D/delete/responses/5061',
                                         },
                                 },
                         },
@@ -1113,6 +1196,29 @@
                                     'jwt': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwiaWF0IjoxNjU1NDAxNDg3LCJleHAiOjE2ODY5Mzc0ODcsInN1YiI6ImVtYWlsIn0.wvhv8lh9LJ6xa8P6KI89uWF_ZWpKBMiLIu9dGQVux50',
                                 },
                         },
+                    'Comment':
+                        {
+                            'type': 'object',
+                            'required': ['content', 'jwt'],
+                            'properties':
+                                {
+                                    'content':
+                                        {
+                                            'type': 'string',
+                                            'description': '댓글 내용',
+                                        },
+                                    'jwt':
+                                        {
+                                            'type': 'string',
+                                            'description': '작성자 jwt',
+                                        },
+                                },
+                            'example':
+                                {
+                                    'content': '블라블라블라',
+                                    'jwt': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwiaWF0IjoxNjU1NDAxNDg3LCJleHAiOjE2ODY5Mzc0ODcsInN1YiI6ImVtYWlsIn0.wvhv8lh9LJ6xa8P6KI89uWF_ZWpKBMiLIu9dGQVux50',
+                                },
+                        },
                     'Error':
                         {
                             'type': 'object',
@@ -1208,6 +1314,25 @@
                                         },
                                 },
                         },
+                    'DeleteUserSuccess':
+                        {
+                            'description': '회원 탈퇴 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '회원 탈퇴 성공',
+                                                },
+                                        },
+                                },
+                        },
                     'ChangePasswordSuccess':
                         {
                             'description': '비밀번호 재설정 성공',
@@ -1242,6 +1367,309 @@
                                                 {
                                                     'status': 2000,
                                                     'message': '인증 메일 전송 성공',
+                                                },
+                                        },
+                                },
+                        },
+                    'DeleteVerifySuccess':
+                        {
+                            'description': '인증 데이터 삭제 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '인증 데이터 삭제 성공',
+                                                },
+                                        },
+                                },
+                        },
+                    'CreatePostSuccess':
+                        {
+                            'description': '글쓰기 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '글쓰기 성공',
+                                                    'result': { 'id': 13 },
+                                                },
+                                        },
+                                },
+                        },
+                    'ModifyPostSuccess':
+                        {
+                            'description': '글수정 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '글수정 성공',
+                                                },
+                                        },
+                                },
+                        },
+                    'SelectOnePostSuccess':
+                        {
+                            'description': '1개의 글 찾기 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '한 개의 글 찾기 성공',
+                                                    'result':
+                                                        {
+                                                            'id': 2,
+                                                            'postId': 1,
+                                                            'userId': 1,
+                                                            'content': '블라블라블라',
+                                                            'createdAt': '2022-06-16T17:16:18.000Z',
+                                                            'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                            'deletedAt': null,
+                                                        },
+                                                },
+                                        },
+                                },
+                        },
+                    'SelectAllPostSuccess':
+                        {
+                            'description': '페이지 당 글 찾기 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '페이지 당 글 찾기 성공',
+                                                    'result':
+                                                        [
+                                                            {
+                                                                'id': 5,
+                                                                'userId': 2,
+                                                                'title': '돈 많이 번 사건',
+                                                                'content': '블라블라블라',
+                                                                'latitude': '37.34000000000000',
+                                                                'longitude': '126.55000000000000',
+                                                                'incident_date': '1970-01-01T00:03:40.000Z',
+                                                                'createdAt': '2022-06-16T17:16:18.000Z',
+                                                                'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                                'deletedAt': null,
+                                                            },
+                                                            {
+                                                                'id': 4,
+                                                                'userId': 2,
+                                                                'title': '돈 많이 번 사건',
+                                                                'content': '블라블라블라',
+                                                                'latitude': '37.34000000000000',
+                                                                'longitude': '126.55000000000000',
+                                                                'incident_date': '1970-01-01T00:03:40.000Z',
+                                                                'createdAt': '2022-06-16T17:16:18.000Z',
+                                                                'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                                'deletedAt': null,
+                                                            },
+                                                            {
+                                                                'id': 1,
+                                                                'userId': 2,
+                                                                'title': '돈 많이 번 사건',
+                                                                'content': '블라블라블라',
+                                                                'latitude': '37.34000000000000',
+                                                                'longitude': '126.55000000000000',
+                                                                'incident_date': '1970-01-01T00:03:40.000Z',
+                                                                'createdAt': '2022-06-16T17:16:18.000Z',
+                                                                'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                                'deletedAt': null,
+                                                            },
+                                                        ],
+                                                },
+                                        },
+                                },
+                        },
+                    'DeletePostSuccess':
+                        {
+                            'description': '글삭제 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '글 삭제 성공',
+                                                },
+                                        },
+                                },
+                        },
+                    'CreateCommentSuccess':
+                        {
+                            'description': '댓글쓰기 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '댓글쓰기 성공',
+                                                    'result': { 'id': 2 },
+                                                },
+                                        },
+                                },
+                        },
+                    'ModifyCommentSuccess':
+                        {
+                            'description': '댓글수정 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '댓글수정 성공',
+                                                },
+                                        },
+                                },
+                        },
+                    'SelectOneCommentSuccess':
+                        {
+                            'description': '1개의 글 찾기 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '한 개의 글 찾기 성공',
+                                                    'result':
+                                                        {
+                                                            'id': 1,
+                                                            'userId': 2,
+                                                            'title': '돈 많이 번 사건',
+                                                            'content': '블라블라블라',
+                                                            'latitude': '37.34000000000000',
+                                                            'longitude': '126.55000000000000',
+                                                            'incident_date': '1970-01-01T00:03:40.000Z',
+                                                            'createdAt': '2022-06-16T17:16:18.000Z',
+                                                            'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                            'deletedAt': null,
+                                                        },
+                                                },
+                                        },
+                                },
+                        },
+                    'SelectAllCommentSuccess':
+                        {
+                            'description': '글별로 댓글 찾기 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '글별로 댓글 찾기 성공',
+                                                    'result':
+                                                        [
+                                                            {
+                                                                'id': 2,
+                                                                'postId': 1,
+                                                                'userId': 1,
+                                                                'content': '블라블라블라',
+                                                                'createdAt': '2022-06-16T17:16:18.000Z',
+                                                                'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                                'deletedAt': null,
+                                                            },
+                                                            {
+                                                                'id': 3,
+                                                                'postId': 1,
+                                                                'userId': 1,
+                                                                'content': '블라블라블라',
+                                                                'createdAt': '2022-06-16T17:16:18.000Z',
+                                                                'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                                'deletedAt': null,
+                                                            },
+                                                            {
+                                                                'id': 4,
+                                                                'postId': 1,
+                                                                'userId': 1,
+                                                                'content': '블라블라블라',
+                                                                'createdAt': '2022-06-16T17:16:18.000Z',
+                                                                'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                                'deletedAt': null,
+                                                            },
+                                                        ],
+                                                },
+                                        },
+                                },
+                        },
+                    'DeleteCommentSuccess':
+                        {
+                            'description': '댓글삭제 성공',
+                            'content':
+                                {
+                                    'application/json':
+                                        {
+                                            'schema':
+                                                {
+                                                    '$ref': '#/components/schemas/Success',
+                                                },
+                                            'example':
+                                                {
+                                                    'status': 2000,
+                                                    'message': '댓글 삭제 성공',
                                                 },
                                         },
                                 },
