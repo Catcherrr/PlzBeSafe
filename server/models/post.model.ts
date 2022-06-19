@@ -1,6 +1,5 @@
 import { Association, DataTypes, Model } from 'sequelize';
 import { sequelize } from './index'; //방금 만들어주었던 sequelize객체 임포트
-import { Users } from './user.model';
 
 // // These are all the attributes in the User model
 interface PostsAttributes {
@@ -23,8 +22,6 @@ export class Posts extends Model<PostsAttributes> {
     public incident_date!: Date | null;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
-
-    public static associations: { userHasManyPosts: Association<Users, Posts> };
 }
 //----------------------------
 Posts.init(
@@ -71,12 +68,3 @@ Posts.init(
         paranoid: true,
     }
 );
-
-Users.hasMany(Posts, {
-    sourceKey: 'id',
-    foreignKey: 'userId',
-    as: 'userHasManyPosts',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-});
-Posts.belongsTo(Users);
