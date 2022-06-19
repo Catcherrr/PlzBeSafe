@@ -20,7 +20,7 @@ export const updateComment = async (
 };
 
 export const findAllByPostIdComments = (postId: number) => {
-    return Comments.findAll({
+    return Comments.findAndCountAll({
         where: { postId },
     });
 };
