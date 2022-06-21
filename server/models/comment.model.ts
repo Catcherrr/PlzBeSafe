@@ -1,7 +1,5 @@
-import { Association, DataTypes, Model } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import { sequelize } from './index'; //방금 만들어주었던 sequelize객체 임포트
-import { Users } from './user.model';
-import { Posts } from './post.model';
 
 // // These are all the attributes in the User model
 interface CommentsAttributes {
@@ -20,9 +18,6 @@ export class Comments extends Model<CommentsAttributes> {
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
     public static associations: {
-        userHasManyPosts: Association<Users, Posts>;
-        userHasManyComments: Association<Users, Comments>;
-        postHasManyComments: Association<Posts, Comments>;
     };
 }
 //----------------------------
@@ -58,30 +53,3 @@ Comments.init(
         paranoid: true,
     }
 );
-
-Users.hasMany(Posts, {
-    sourceKey: 'id',
-    foreignKey: 'userId',
-    as: 'userHasManyPosts',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-});
-Posts.belongsTo(Users);
-
-Users.hasMany(Comments, {
-    sourceKey: 'id',
-    foreignKey: 'userId',
-    as: 'userHasManyComments',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-});
-Comments.belongsTo(Users);
-
-Posts.hasMany(Comments, {
-    sourceKey: 'id',
-    foreignKey: 'postId',
-    as: 'postHasManyComments',
-    onDelete: 'cascade',
-    onUpdate: 'cascade',
-});
-Comments.belongsTo(Posts);
