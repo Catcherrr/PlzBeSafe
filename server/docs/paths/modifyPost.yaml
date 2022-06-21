@@ -3,10 +3,10 @@ post:
     tags:
         - Post
     requestBody:
-        $ref: '../requestBodies/updatePost.yaml'
+        $ref: '../requestBodies/modifyPost.yaml'
     responses:
         2000:
-            $ref: '../responses/success/updatePost.yaml'
+            $ref: '../responses/success/modifyPost.yaml'
         4048:
             $ref: '../responses/client_err/noPostContent.yaml'
         5062:

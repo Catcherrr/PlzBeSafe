@@ -1,24 +1,25 @@
 import { Request, Response } from 'express';
 import {
-    insertPost as uploadPost,
-    updatePost as modifyPost,
-    findOneByIdPosts as inquirePost,
-    findAllByPagePosts as pagenationPost,
-    deletePosts,
-} from '../services/post.service';
+    insertComment as uploadComment,
+    updateComment as modifyComment,
+    findOneByIdComments as inquireComment,
+    findAllByPostIdComments as findCommentByPostId,
+    deleteComments,
+} from '../services/comment.service';
 import { findOneByJwtUser } from '../services/user.service';
 import { statusCode } from '../util/responseForm';
 import { serviceReturnForm, statusTrans } from '../modules/controller.modules';
 
 let serviceReturnForm = {};
 
-export const insertPost = async (req: Request, res: Response) => {
-    const { jwt, title, content, longitude, latitude, incident_date } =
-        req.body;
-    if (!title) {
+export const insertComment = async (req: Request, res: Response) => {
+    const { postId } = req.params;
+    const { jwt, content } = req.body;
+
+    if (!postId) {
         serviceReturnForm = {
             status: statusCode.client_error.noPostContent,
-            message: '제목을 입력해주세요',
+            message: '존재하지 않는 글입니다',
         };
         res.status(statusTrans(statusCode.client_error.noPostContent)).json(
             serviceReturnForm
@@ -28,32 +29,10 @@ export const insertPost = async (req: Request, res: Response) => {
 
     if (!content) {
         serviceReturnForm = {
-            status: statusCode.client_error.noPostContent,
+            status: statusCode.client_error.noCommentContent,
             message: '내용을 입력해주세요',
         };
-        res.status(statusTrans(statusCode.client_error.noPostContent)).json(
-            serviceReturnForm
-        );
-        return;
-    }
-
-    if (!latitude) {
-        serviceReturnForm = {
-            status: statusCode.client_error.noPostContent,
-            message: '경도를 입력해주세요',
-        };
-        res.status(statusTrans(statusCode.client_error.noPostContent)).json(
-            serviceReturnForm
-        );
-        return;
-    }
-
-    if (!longitude) {
-        serviceReturnForm = {
-            status: statusCode.client_error.noPostContent,
-            message: '위도를 입력해주세요',
-        };
-        res.status(statusTrans(statusCode.client_error.noPostContent)).json(
+        res.status(statusTrans(statusCode.client_error.noCommentContent)).json(
             serviceReturnForm
         );
         return;
@@ -62,19 +41,16 @@ export const insertPost = async (req: Request, res: Response) => {
     return findOneByJwtUser(jwt)
         .then((data: any) => {
             if (data) {
-                return uploadPost({
+                return uploadComment({
                     userId: data.id,
-                    title,
+                    postId: Number(postId),
                     content,
-                    latitude,
-                    longitude,
-                    incident_date,
                 })
                     .then((data: any) => {
                         if (data) {
                             serviceReturnForm = {
                                 status: statusCode.ok.defaultValue,
-                                message: '글쓰기 성공',
+                                message: '댓글쓰기 성공',
                                 result: { id: data.id },
                             };
                             res.status(
@@ -84,10 +60,13 @@ export const insertPost = async (req: Request, res: Response) => {
                         }
                     })
                     .catch((err: any) => {
-                        console.log('[post/insertPost/uploadPost] ' + err);
+                        console.log(
+                            '[comment/insertComment/findOneByJwtUser/uploadComment] ' +
+                                err
+                        );
                         serviceReturnForm = {
                             status: statusCode.server_error.dbInsertError,
-                            message: '글쓰기 실패',
+                            message: '댓글쓰기 실패',
                         };
                         res.status(
                             statusTrans(statusCode.server_error.dbInsertError)
@@ -118,65 +97,29 @@ export const insertPost = async (req: Request, res: Response) => {
         });
 };
 
-export const updatePost = async (req: Request, res: Response) => {
+export const updateComment = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { title, content, longitude, latitude, incident_date } = req.body;
-    if (!title) {
-        serviceReturnForm = {
-            status: statusCode.client_error.noPostContent,
-            message: '제목을 입력해주세요',
-        };
-        res.status(statusTrans(statusCode.client_error.noPostContent)).json(
-            serviceReturnForm
-        );
-        return;
-    }
+    const { content } = req.body;
 
     if (!content) {
         serviceReturnForm = {
-            status: statusCode.client_error.noPostContent,
+            status: statusCode.client_error.noCommentContent,
             message: '내용을 입력해주세요',
         };
-        res.status(statusTrans(statusCode.client_error.noPostContent)).json(
+        res.status(statusTrans(statusCode.client_error.noCommentContent)).json(
             serviceReturnForm
         );
         return;
     }
 
-    if (!latitude) {
-        serviceReturnForm = {
-            status: statusCode.client_error.noPostContent,
-            message: '경도를 입력해주세요',
-        };
-        res.status(statusTrans(statusCode.client_error.noPostContent)).json(
-            serviceReturnForm
-        );
-        return;
-    }
-
-    if (!longitude) {
-        serviceReturnForm = {
-            status: statusCode.client_error.noPostContent,
-            message: '위도를 입력해주세요',
-        };
-        res.status(statusTrans(statusCode.client_error.noPostContent)).json(
-            serviceReturnForm
-        );
-        return;
-    }
-
-    return modifyPost(Number(id), {
-        title,
+    return modifyComment(Number(id), {
         content,
-        latitude,
-        longitude,
-        incident_date,
     })
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    message: '글 수정 성공',
+                    message: '댓글 수정 성공',
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
                     serviceReturnForm
@@ -184,20 +127,20 @@ export const updatePost = async (req: Request, res: Response) => {
                 return;
             } else {
                 serviceReturnForm = {
-                    status: statusCode.client_error.noPostContent,
-                    message: '존재하지 않는 글입니다',
+                    status: statusCode.client_error.noCommentContent,
+                    message: '존재하지 않는 댓글입니다',
                 };
                 res.status(
-                    statusTrans(statusCode.client_error.noPostContent)
+                    statusTrans(statusCode.client_error.noCommentContent)
                 ).json(serviceReturnForm);
                 return;
             }
         })
         .catch((err: any) => {
-            console.log('[post/updatePost/modifyPost] ' + err);
+            console.log('[comment/updateComment/modifyComment] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbUpdateError,
-                message: '글 수정 실패',
+                message: '댓글 수정 실패',
             };
             res.status(statusTrans(statusCode.server_error.dbUpdateError)).json(
                 serviceReturnForm
@@ -206,15 +149,15 @@ export const updatePost = async (req: Request, res: Response) => {
         });
 };
 
-export const findOnePost = async (req: Request, res: Response) => {
+export const findOneComment = async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    return inquirePost(Number(id))
+    return inquireComment(Number(id))
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    message: '한 개의 글 찾기 성공',
+                    message: '한 개의 댓글 찾기 성공',
                     result: data,
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
@@ -224,7 +167,7 @@ export const findOnePost = async (req: Request, res: Response) => {
             } else {
                 serviceReturnForm = {
                     status: statusCode.client_error.noPostContent,
-                    message: '존재하지 않는 글입니다',
+                    message: '존재하지 않는 댓글입니다',
                 };
                 res.status(
                     statusTrans(statusCode.client_error.noPostContent)
@@ -233,10 +176,10 @@ export const findOnePost = async (req: Request, res: Response) => {
             }
         })
         .catch((err: any) => {
-            console.log('[post/findOnePost/inquirePost] ' + err);
+            console.log('[comment/findOneComment/inquireComment] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbSelectError,
-                message: '한 개의 글 찾기 실패',
+                message: '한 개의 댓글 찾기 실패',
             };
             res.status(statusTrans(statusCode.server_error.dbSelectError)).json(
                 serviceReturnForm
@@ -245,15 +188,15 @@ export const findOnePost = async (req: Request, res: Response) => {
         });
 };
 
-export const findAllByPagePost = async (req: Request, res: Response) => {
-    const { page } = req.params;
+export const findAllByPostId = async (req: Request, res: Response) => {
+    const { postId } = req.params;
 
-    return pagenationPost(Number(page))
+    return findCommentByPostId(Number(postId))
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    message: '페이지 당 글 찾기 성공',
+                    message: '글별로 댓글 전부 찾기 성공',
                     result: data,
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
@@ -263,7 +206,7 @@ export const findAllByPagePost = async (req: Request, res: Response) => {
             }
         })
         .catch((err: any) => {
-            console.log('[post/findAllByPagePost/pagenationPost] ' + err);
+            console.log('[comment/findAllByPostId/findCommentByPostId] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbSelectError,
                 message: '페이지당 글 찾기 실패',
@@ -275,15 +218,15 @@ export const findAllByPagePost = async (req: Request, res: Response) => {
         });
 };
 
-export const deleteOnePost = async (req: Request, res: Response) => {
+export const deleteOneComment = async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    return deletePosts(Number(id))
+    return deleteComments(Number(id))
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    message: '글 삭제 성공',
+                    message: '댓글 삭제 성공',
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
                     serviceReturnForm
@@ -292,7 +235,7 @@ export const deleteOnePost = async (req: Request, res: Response) => {
             } else {
                 serviceReturnForm = {
                     status: statusCode.client_error.noPostContent,
-                    message: '존재하지 않는 글입니다',
+                    message: '존재하지 않는 댓글입니다',
                 };
                 res.status(
                     statusTrans(statusCode.client_error.noPostContent)
@@ -301,10 +244,10 @@ export const deleteOnePost = async (req: Request, res: Response) => {
             }
         })
         .catch((err: any) => {
-            console.log('[post/deletePost/deletePosts] ' + err);
+            console.log('[comment/deleteComment/deleteComments] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbDeleteError,
-                message: '글 삭제 실패',
+                message: '댓글 삭제 실패',
             };
             res.status(statusTrans(statusCode.server_error.dbDeleteError)).json(
                 serviceReturnForm

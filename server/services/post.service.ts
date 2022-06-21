@@ -1,27 +1,14 @@
 import { Posts } from '../models/post.model';
-import { findOneByJwtUser } from './user.service';
 
-export const insertPost = async (
-    post: {
-        title: string;
-        content: string;
-        latitude: number;
-        longitude: number;
-        incident_date: Date | null;
-    },
-    jwt: string
-) => {
-    return findOneByJwtUser(jwt).then((data: any) => {
-        if (data) {
-            const value = {
-                id: 0,
-                userId: data.id,
-                ...post,
-            };
-
-            return Posts.create(value);
-        }
-    });
+export const insertPost = async (post: {
+    userId: number;
+    title: string;
+    content: string;
+    latitude: number;
+    longitude: number;
+    incident_date: Date | null;
+}) => {
+    return Posts.create({ id: 0, ...post });
 };
 
 export const updatePost = async (

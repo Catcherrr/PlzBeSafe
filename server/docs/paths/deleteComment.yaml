@@ -1,0 +1,19 @@
+delete:
+    summary: 댓글 삭제
+    tags:
+        - Comment
+    parameters:
+        - in: path
+          name: id
+          required: true
+          description: 댓글 id
+          schema:
+              type: number
+              example: 8
+    responses:
+        2000:
+            $ref: '../responses/success/deleteComment.yaml'
+        4049:
+            $ref: '../responses/client_err/noCommentContent.yaml'
+        5061:
+            $ref: '../responses/server_err/dbDeleteNot.yaml'

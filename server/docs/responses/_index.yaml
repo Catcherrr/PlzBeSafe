@@ -1,13 +1,37 @@
 RegisterSuccess:
-    $ref: './success/register.yaml'
+    $ref: './success/createUser.yaml'
 LoginSuccess:
     $ref: './success/login.yaml'
 FindMyInfoSuccess:
     $ref: './success/myInfo.yaml'
+DeleteUserSuccess:
+    $ref: './success/deleteUser.yaml'
 ChangePasswordSuccess:
     $ref: './success/changePassword.yaml'
 SendMailVerifySuccess:
     $ref: './success/sendMailVerify.yaml'
+DeleteVerifySuccess:
+    $ref: './success/deleteVerify.yaml'
+CreatePostSuccess:
+    $ref: './success/createPost.yaml'
+ModifyPostSuccess:
+    $ref: './success/modifyPost.yaml'
+SelectOnePostSuccess:
+    $ref: './success/findOnePost.yaml'
+SelectAllPostSuccess:
+    $ref: './success/findAllByPagePost.yaml'
+DeletePostSuccess:
+    $ref: './success/deletePost.yaml'
+CreateCommentSuccess:
+    $ref: './success/createComment.yaml'
+ModifyCommentSuccess:
+    $ref: './success/modifyComment.yaml'
+SelectOneCommentSuccess:
+    $ref: './success/findOneComment.yaml'
+SelectAllCommentSuccess:
+    $ref: './success/findAllByPostIdComment.yaml'
+DeleteCommentSuccess:
+    $ref: './success/deleteComment.yaml'
 NoEmailError:
     $ref: './client_err/noEmail.yaml'
 NoPasswordError:

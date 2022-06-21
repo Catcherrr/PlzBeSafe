@@ -1,0 +1,19 @@
+get:
+    summary: 댓글 한 개 조회
+    tags:
+        - Comment
+    parameters:
+        - in: path
+          name: id
+          required: true
+          description: 댓글 id로 1개의 댓글 조회
+          schema:
+              type: number
+              example: 1
+    responses:
+        2000:
+            $ref: '../responses/success/findOneComment.yaml'
+        4048:
+            $ref: '../responses/client_err/noCommentContent.yaml'
+        5063:
+            $ref: '../responses/server_err/dbSelectNot.yaml'

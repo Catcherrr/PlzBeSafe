@@ -1,5 +1,5 @@
 /user/register:
-    $ref: './register.yaml'
+    $ref: './createUser.yaml'
 /user/login:
     $ref: './login.yaml'
 /user/myinfo:
@@ -11,7 +11,7 @@
 /user/changeImage:
     $ref: './modifyImage.yaml'
 /user/resign:
-    $ref: './resignUser.yaml'
+    $ref: './deleteUser.yaml'
 
 /verify/init:
     $ref: './initVerify.yaml'
@@ -27,6 +27,17 @@
 /post/create:
     $ref: './createPost.yaml'
 /post/modify/{id}:
-    $ref: './updatePost.yaml'
+    $ref: './modifyPost.yaml'
 /post/delete/{id}:
     $ref: './deletePost.yaml'
+
+/comment/all/{postId}:
+    $ref: './findAllByPostIdComment.yaml'
+/comment/one/{id}:
+    $ref: './findOneComment.yaml'
+/comment/create/{postId}:
+    $ref: './createComment.yaml'
+/comment/modify/{id}:
+    $ref: './modifyComment.yaml'
+/comment/delete/{id}:
+    $ref: './deleteComment.yaml'
