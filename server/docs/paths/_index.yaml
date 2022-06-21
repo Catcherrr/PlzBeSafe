@@ -41,3 +41,14 @@
     $ref: './modifyComment.yaml'
 /comment/delete/{id}:
     $ref: './deleteComment.yaml'
+
+/recomment/all/{commentId}:
+    $ref: './findAllByCommentIdRecomment.yaml'
+/recomment/one/{id}:
+    $ref: './findOneRecomment.yaml'
+/recomment/create/{commentId}:
+    $ref: './createRecomment.yaml'
+/recomment/modify/{id}:
+    $ref: './modifyRecomment.yaml'
+/recomment/delete/{id}:
+    $ref: './deleteRecomment.yaml'

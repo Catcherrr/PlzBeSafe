@@ -1,0 +1,19 @@
+delete:
+    summary: 대댓글 삭제
+    tags:
+        - Recomment
+    parameters:
+        - in: path
+          name: id
+          required: true
+          description: 대댓글 id
+          schema:
+              type: number
+              example: 8
+    responses:
+        2000:
+            $ref: '../responses/success/deleteRecomment.yaml'
+        4049:
+            $ref: '../responses/client_err/noCommentContent.yaml'
+        5061:
+            $ref: '../responses/server_err/dbDeleteNot.yaml'
