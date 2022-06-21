@@ -1,0 +1,8 @@
+description: 댓글삭제 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 대댓글 삭제 성공

@@ -1,0 +1,21 @@
+post:
+    summary: 댓글 작성
+    tags:
+        - Recomment
+    parameters:
+        - in: path
+          name: commentId
+          required: true
+          description: commentId는 파라미터로 전달
+          schema:
+              type: number
+              example: 1
+    requestBody:
+        $ref: '../requestBodies/createRecomment.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/createRecomment.yaml'
+        4049:
+            $ref: '../responses/client_err/noCommentContent.yaml'
+        5061:
+            $ref: '../responses/server_err/dbInsertNot.yaml'

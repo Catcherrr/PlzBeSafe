@@ -1,0 +1,8 @@
+description: 대댓글 수정 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 대댓글수정 성공

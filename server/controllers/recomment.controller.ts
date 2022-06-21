@@ -1,27 +1,27 @@
 import { Request, Response } from 'express';
 import {
-    insertComment as uploadComment,
-    updateComment as modifyComment,
-    findOneByIdComments as inquireComment,
-    findAllByPostIdComments as findCommentByPostId,
-    deleteComments,
-} from '../services/comment.service';
+    insertRecomment as uploadRecomment,
+    updateRecomment as modifyRecomment,
+    findOneByIdRecomments as inquireRecomment,
+    findAllByCommentIdRecomments as findRecommentByCommentId,
+    deleteRecomments,
+} from '../services/recomment.service';
 import { findOneByJwtUser } from '../services/user.service';
 import { statusCode } from '../util/responseForm';
 import { serviceReturnForm, statusTrans } from '../modules/controller.modules';
 
 let serviceReturnForm = {};
 
-export const insertComment = async (req: Request, res: Response) => {
-    const { postId } = req.params;
+export const insertRecomment = async (req: Request, res: Response) => {
+    const { commentId } = req.params;
     const { jwt, content } = req.body;
 
-    if (!postId) {
+    if (!commentId) {
         serviceReturnForm = {
-            status: statusCode.client_error.noPostContent,
-            message: '존재하지 않는 글입니다',
+            status: statusCode.client_error.noCommentContent,
+            message: '존재하지 않는 댓글입니다',
         };
-        res.status(statusTrans(statusCode.client_error.noPostContent)).json(
+        res.status(statusTrans(statusCode.client_error.noCommentContent)).json(
             serviceReturnForm
         );
         return;
@@ -41,16 +41,16 @@ export const insertComment = async (req: Request, res: Response) => {
     return findOneByJwtUser(jwt)
         .then((data: any) => {
             if (data) {
-                return uploadComment({
+                return uploadRecomment({
                     userId: data.id,
-                    postId: Number(postId),
+                    commentId: Number(commentId),
                     content,
                 })
                     .then((data: any) => {
                         if (data) {
                             serviceReturnForm = {
                                 status: statusCode.ok.defaultValue,
-                                message: '댓글쓰기 성공',
+                                message: '대댓글쓰기 성공',
                                 result: { id: data.id },
                             };
                             res.status(
@@ -61,12 +61,12 @@ export const insertComment = async (req: Request, res: Response) => {
                     })
                     .catch((err: any) => {
                         console.log(
-                            '[comment/insertComment/findOneByJwtUser/uploadComment] ' +
+                            '[recomment/insertRecomment/findOneByJwtUser/uploadRecomment] ' +
                                 err
                         );
                         serviceReturnForm = {
                             status: statusCode.server_error.dbInsertError,
-                            message: '댓글쓰기 실패',
+                            message: '대댓글쓰기 실패',
                         };
                         res.status(
                             statusTrans(statusCode.server_error.dbInsertError)
@@ -85,7 +85,7 @@ export const insertComment = async (req: Request, res: Response) => {
             }
         })
         .catch((err: any) => {
-            console.log('[comment/insertComment/findOneByJwtUser] ' + err);
+            console.log('[recomment/insertRecomment/findOneByJwtUser] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbSelectError,
                 message: '회원을 찾는 데 오류가 발생했습니다',
@@ -97,7 +97,7 @@ export const insertComment = async (req: Request, res: Response) => {
         });
 };
 
-export const updateComment = async (req: Request, res: Response) => {
+export const updateRecomment = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { content } = req.body;
 
@@ -112,14 +112,14 @@ export const updateComment = async (req: Request, res: Response) => {
         return;
     }
 
-    return modifyComment(Number(id), {
+    return modifyRecomment(Number(id), {
         content,
     })
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    message: '댓글 수정 성공',
+                    message: '대댓글 수정 성공',
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
                     serviceReturnForm
@@ -137,10 +137,10 @@ export const updateComment = async (req: Request, res: Response) => {
             }
         })
         .catch((err: any) => {
-            console.log('[comment/updateComment/modifyComment] ' + err);
+            console.log('[recomment/updateRecomment/modifyRecomment] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbUpdateError,
-                message: '댓글 수정 실패',
+                message: '대댓글 수정 실패',
             };
             res.status(statusTrans(statusCode.server_error.dbUpdateError)).json(
                 serviceReturnForm
@@ -149,15 +149,15 @@ export const updateComment = async (req: Request, res: Response) => {
         });
 };
 
-export const findOneComment = async (req: Request, res: Response) => {
+export const findOneRecomment = async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    return inquireComment(Number(id))
+    return inquireRecomment(Number(id))
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    message: '한 개의 댓글 찾기 성공',
+                    message: '한 개의 대댓글 찾기 성공',
                     result: data,
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
@@ -167,7 +167,7 @@ export const findOneComment = async (req: Request, res: Response) => {
             } else {
                 serviceReturnForm = {
                     status: statusCode.client_error.noCommentContent,
-                    message: '존재하지 않는 댓글입니다',
+                    message: '존재하지 않는 대댓글입니다',
                 };
                 res.status(
                     statusTrans(statusCode.client_error.noCommentContent)
@@ -176,10 +176,10 @@ export const findOneComment = async (req: Request, res: Response) => {
             }
         })
         .catch((err: any) => {
-            console.log('[comment/findOneComment/inquireComment] ' + err);
+            console.log('[recomment/findOneRecomment/inquireRecomment] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbSelectError,
-                message: '한 개의 댓글 찾기 실패',
+                message: '한 개의 대댓글 찾기 실패',
             };
             res.status(statusTrans(statusCode.server_error.dbSelectError)).json(
                 serviceReturnForm
@@ -188,15 +188,15 @@ export const findOneComment = async (req: Request, res: Response) => {
         });
 };
 
-export const findAllByPostId = async (req: Request, res: Response) => {
-    const { postId } = req.params;
+export const findAllByCommentId = async (req: Request, res: Response) => {
+    const { commentId } = req.params;
 
-    return findCommentByPostId(Number(postId))
+    return findRecommentByCommentId(Number(commentId))
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    message: '글별로 댓글 전부 찾기 성공',
+                    message: '댓글별로 대댓글 전부 찾기 성공',
                     result: data,
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
@@ -206,10 +206,10 @@ export const findAllByPostId = async (req: Request, res: Response) => {
             }
         })
         .catch((err: any) => {
-            console.log('[comment/findAllByPostId/findCommentByPostId] ' + err);
+            console.log('[recomment/findAllByCommentId/findRecommentByCommentId] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbSelectError,
-                message: '페이지당 글 찾기 실패',
+                message: '댓글별로 댓글 찾기 실패',
             };
             res.status(statusTrans(statusCode.server_error.dbSelectError)).json(
                 serviceReturnForm
@@ -218,15 +218,15 @@ export const findAllByPostId = async (req: Request, res: Response) => {
         });
 };
 
-export const deleteOneComment = async (req: Request, res: Response) => {
+export const deleteOneRecomment = async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    return deleteComments(Number(id))
+    return deleteRecomments(Number(id))
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    message: '댓글 삭제 성공',
+                    message: '대댓글 삭제 성공',
                 };
                 res.status(statusTrans(statusCode.ok.defaultValue)).json(
                     serviceReturnForm
@@ -235,7 +235,7 @@ export const deleteOneComment = async (req: Request, res: Response) => {
             } else {
                 serviceReturnForm = {
                     status: statusCode.client_error.noCommentContent,
-                    message: '존재하지 않는 댓글입니다',
+                    message: '존재하지 않는 대댓글입니다',
                 };
                 res.status(
                     statusTrans(statusCode.client_error.noCommentContent)
@@ -244,10 +244,10 @@ export const deleteOneComment = async (req: Request, res: Response) => {
             }
         })
         .catch((err: any) => {
-            console.log('[comment/deleteComment/deleteComments] ' + err);
+            console.log('[recomment/deleteRecomment/deleteRecomments] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbDeleteError,
-                message: '댓글 삭제 실패',
+                message: '대댓글 삭제 실패',
             };
             res.status(statusTrans(statusCode.server_error.dbDeleteError)).json(
                 serviceReturnForm

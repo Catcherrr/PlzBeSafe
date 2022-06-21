@@ -1067,6 +1067,327 @@
                                 },
                         },
                 },
+            '/recomment/all/{commentId}':
+                {
+                    'get':
+                        {
+                            'summary': '댓글별로 대댓글 전체 조회',
+                            'tags': ['Recomment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'commentId',
+                                        'required': true,
+                                        'description': 'commentId로 대댓글 전체 조회',
+                                        'schema':
+                                            { 'type': 'number', 'example': 1 },
+                                    },
+                                ],
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            'description': '글별로 댓글 찾기 성공',
+                                            'content':
+                                                {
+                                                    'application/json':
+                                                        {
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Success',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 2000,
+                                                                    'message': '댓글별로 대댓글 찾기 성공',
+                                                                    'result':
+                                                                        {
+                                                                            'count': 5,
+                                                                            'rows':
+                                                                                [
+                                                                                    {
+                                                                                        'id': 1,
+                                                                                        'commentId': 2,
+                                                                                        'userId': 2,
+                                                                                        'content': '블라블라블라',
+                                                                                        'createdAt': '2022-06-16T17:16:18.000Z',
+                                                                                        'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                                                        'deletedAt': null,
+                                                                                    },
+                                                                                    {
+                                                                                        'id': 2,
+                                                                                        'commentId': 2,
+                                                                                        'userId': 2,
+                                                                                        'content': '블라블라블라',
+                                                                                        'createdAt': '2022-06-21T17:58:49.000Z',
+                                                                                        'updatedAt': '2022-06-21T18:00:38.000Z',
+                                                                                        'deletedAt': null,
+                                                                                    },
+                                                                                    {
+                                                                                        'id': 4,
+                                                                                        'commentId': 2,
+                                                                                        'userId': 2,
+                                                                                        'content': '어쩌구 저쩌구 답글 테스트 !',
+                                                                                        'createdAt': '2022-06-16T17:16:18.000Z',
+                                                                                        'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                                                        'deletedAt': null,
+                                                                                    },
+                                                                                ],
+                                                                        },
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                    '4049':
+                                        {
+                                            '$ref': '#/paths/~1comment~1one~1%7Bid%7D/get/responses/4048',
+                                        },
+                                    '5063':
+                                        {
+                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                        },
+                                },
+                        },
+                },
+            '/recomment/one/{id}':
+                {
+                    'get':
+                        {
+                            'summary': '대댓글 한 개 조회',
+                            'tags': ['Recomment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'id',
+                                        'required': true,
+                                        'description': '대댓글 id로 1개의 댓글 조회',
+                                        'schema':
+                                            { 'type': 'number', 'example': 1 },
+                                    },
+                                ],
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            'description': '1개의 댓글 찾기 성공',
+                                            'content':
+                                                {
+                                                    'application/json':
+                                                        {
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Success',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 2000,
+                                                                    'message': '한 개의 대댓글 찾기 성공',
+                                                                    'result':
+                                                                        {
+                                                                            'id': 2,
+                                                                            'commentId': 2,
+                                                                            'userId': 2,
+                                                                            'content': '어쩌구 저쩌구 답글 테스트 !',
+                                                                            'createdAt': '2022-06-16T17:16:18.000Z',
+                                                                            'updatedAt': '2022-06-16T17:16:18.000Z',
+                                                                            'deletedAt': null,
+                                                                        },
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                    '4048':
+                                        {
+                                            '$ref': '#/paths/~1comment~1one~1%7Bid%7D/get/responses/4048',
+                                        },
+                                    '5063':
+                                        {
+                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                        },
+                                },
+                        },
+                },
+            '/recomment/create/{commentId}':
+                {
+                    'post':
+                        {
+                            'summary': '댓글 작성',
+                            'tags': ['Recomment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'commentId',
+                                        'required': true,
+                                        'description': 'commentId는 파라미터로 전달',
+                                        'schema':
+                                            { 'type': 'number', 'example': 1 },
+                                    },
+                                ],
+                            'requestBody':
+                                {
+                                    'required': true,
+                                    'content':
+                                        {
+                                            'application/json':
+                                                {
+                                                    'schema':
+                                                        {
+                                                            '$ref': '#/components/schemas/Recomment',
+                                                        },
+                                                },
+                                        },
+                                },
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            'description': '대댓글쓰기 성공',
+                                            'content':
+                                                {
+                                                    'application/json':
+                                                        {
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Success',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 2000,
+                                                                    'message': '대댓글쓰기 성공',
+                                                                    'result':
+                                                                        {
+                                                                            'id': 2,
+                                                                        },
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                    '4049':
+                                        {
+                                            '$ref': '#/paths/~1comment~1one~1%7Bid%7D/get/responses/4048',
+                                        },
+                                    '5061':
+                                        {
+                                            '$ref': '#/components/responses/DBInsertError',
+                                        },
+                                },
+                        },
+                },
+            '/recomment/modify/{id}':
+                {
+                    'post':
+                        {
+                            'summary': '대댓글 수정',
+                            'tags': ['Recomment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'commentId',
+                                        'required': true,
+                                        'description': 'commentId는 파라미터로 전달',
+                                        'schema':
+                                            { 'type': 'number', 'example': 1 },
+                                    },
+                                ],
+                            'requestBody':
+                                {
+                                    'required': true,
+                                    'content':
+                                        {
+                                            'application/json':
+                                                {
+                                                    'schema':
+                                                        {
+                                                            '$ref': '#/components/schemas/Recomment',
+                                                        },
+                                                },
+                                        },
+                                },
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            'description': '대댓글 수정 성공',
+                                            'content':
+                                                {
+                                                    'application/json':
+                                                        {
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Success',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 2000,
+                                                                    'message': '대댓글수정 성공',
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                    '4049':
+                                        {
+                                            '$ref': '#/paths/~1comment~1one~1%7Bid%7D/get/responses/4048',
+                                        },
+                                    '5062':
+                                        {
+                                            '$ref': '#/components/responses/DBUpdateError',
+                                        },
+                                },
+                        },
+                },
+            '/recomment/delete/{id}':
+                {
+                    'delete':
+                        {
+                            'summary': '대댓글 삭제',
+                            'tags': ['Recomment'],
+                            'parameters':
+                                [
+                                    {
+                                        'in': 'path',
+                                        'name': 'id',
+                                        'required': true,
+                                        'description': '대댓글 id',
+                                        'schema':
+                                            { 'type': 'number', 'example': 8 },
+                                    },
+                                ],
+                            'responses':
+                                {
+                                    '2000':
+                                        {
+                                            'description': '댓글삭제 성공',
+                                            'content':
+                                                {
+                                                    'application/json':
+                                                        {
+                                                            'schema':
+                                                                {
+                                                                    '$ref': '#/components/schemas/Success',
+                                                                },
+                                                            'example':
+                                                                {
+                                                                    'status': 2000,
+                                                                    'message': '대댓글 삭제 성공',
+                                                                },
+                                                        },
+                                                },
+                                        },
+                                    '4049':
+                                        {
+                                            '$ref': '#/paths/~1comment~1one~1%7Bid%7D/get/responses/4048',
+                                        },
+                                    '5061':
+                                        {
+                                            '$ref': '#/paths/~1post~1delete~1%7Bid%7D/delete/responses/5061',
+                                        },
+                                },
+                        },
+                },
         },
     'components':
         {
@@ -1216,6 +1537,29 @@
                             'example':
                                 {
                                     'content': '블라블라블라',
+                                    'jwt': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwiaWF0IjoxNjU1NDAxNDg3LCJleHAiOjE2ODY5Mzc0ODcsInN1YiI6ImVtYWlsIn0.wvhv8lh9LJ6xa8P6KI89uWF_ZWpKBMiLIu9dGQVux50',
+                                },
+                        },
+                    'Recomment':
+                        {
+                            'type': 'object',
+                            'required': ['content', 'jwt'],
+                            'properties':
+                                {
+                                    'content':
+                                        {
+                                            'type': 'string',
+                                            'description': '대댓글 내용',
+                                        },
+                                    'jwt':
+                                        {
+                                            'type': 'string',
+                                            'description': '작성자 jwt',
+                                        },
+                                },
+                            'example':
+                                {
+                                    'content': '답글 테스트',
                                     'jwt': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwiaWF0IjoxNjU1NDAxNDg3LCJleHAiOjE2ODY5Mzc0ODcsInN1YiI6ImVtYWlsIn0.wvhv8lh9LJ6xa8P6KI89uWF_ZWpKBMiLIu9dGQVux50',
                                 },
                         },
@@ -1592,12 +1936,9 @@
                                                     'result':
                                                         {
                                                             'id': 1,
+                                                            'postId': 3,
                                                             'userId': 2,
-                                                            'title': '돈 많이 번 사건',
                                                             'content': '블라블라블라',
-                                                            'latitude': '37.34000000000000',
-                                                            'longitude': '126.55000000000000',
-                                                            'incident_date': '1970-01-01T00:03:40.000Z',
                                                             'createdAt': '2022-06-16T17:16:18.000Z',
                                                             'updatedAt': '2022-06-16T17:16:18.000Z',
                                                             'deletedAt': null,

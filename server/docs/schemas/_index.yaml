@@ -6,6 +6,8 @@ Post:
     $ref: './Post.yaml'
 Comment:
     $ref: './Comment.yaml'
+Recomment:
+    $ref: './Recomment.yaml'
 Error:
     $ref: './Error.yaml'
 Success:
