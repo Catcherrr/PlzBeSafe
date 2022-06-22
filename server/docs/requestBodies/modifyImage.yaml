@@ -1,0 +1,15 @@
+required: true
+content:
+    application/json:
+        schema:
+            type: object
+            properties:
+                jwt:
+                    type: string
+                url:
+                    type: string
+            example:
+                {
+                    jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwiaWF0IjoxNjU0NTQzOTc0LCJleHAiOjE2NTQ2MzAzNzQsInN1YiI6ImVtYWlsIn0.ppEcUz_MRh8cN_oSY26kZiAQ0UZPRHrimR8Yb8w1CKA',
+                    url: 'https://m.blog.naver.com/fkdin/222107578687',
+                }

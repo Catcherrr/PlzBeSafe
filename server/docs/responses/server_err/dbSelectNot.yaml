@@ -1,0 +1,8 @@
+description: DB select 오류
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 5063
+            message: 데이터를 검색하지 못했습니다

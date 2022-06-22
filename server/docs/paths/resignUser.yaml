@@ -1,0 +1,13 @@
+delete:
+    summary: 회원 탈퇴
+    tags:
+        - User
+    requestBody:
+        $ref: '../requestBodies/deleteUser.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/deleteUser.yaml'
+        4043:
+            $ref: '../responses/client_err/noToken.yaml'
+        5000:
+            $ref: '../responses/server_err/dbUpdateNot.yaml'

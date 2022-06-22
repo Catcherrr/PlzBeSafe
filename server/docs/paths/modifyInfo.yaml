@@ -1,0 +1,13 @@
+put:
+    summary: 내 정보 수정
+    tags:
+        - User
+    requestBody:
+        $ref: '../requestBodies/modifyUser.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/changeInfo.yaml'
+        4043:
+            $ref: '../responses/client_err/noToken.yaml'
+        5000:
+            $ref: '../responses/server_err/dbUpdateNot.yaml'

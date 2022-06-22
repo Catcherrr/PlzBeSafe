@@ -1,0 +1,21 @@
+description: 1개의 글 찾기 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 한 개의 글 찾기 성공
+            result:
+                {
+                    id: 1,
+                    userId: 2,
+                    title: '돈 많이 번 사건',
+                    content: '블라블라블라',
+                    latitude: '37.34000000000000',
+                    longitude: '126.55000000000000',
+                    incident_date: '1970-01-01T00:03:40.000Z',
+                    createdAt: '2022-06-16T17:16:18.000Z',
+                    updatedAt: '2022-06-16T17:16:18.000Z',
+                    deletedAt: null,
+                }

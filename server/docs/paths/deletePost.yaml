@@ -1,0 +1,19 @@
+delete:
+    summary: 글 삭제
+    tags:
+        - Post
+    parameters:
+        - in: path
+          name: id
+          required: true
+          description: 글 id
+          schema:
+              type: number
+              example: 8
+    responses:
+        2000:
+            $ref: '../responses/success/deletePost.yaml'
+        4048:
+            $ref: '../responses/client_err/noPostContent.yaml'
+        5061:
+            $ref: '../responses/server_err/dbDeleteNot.yaml'

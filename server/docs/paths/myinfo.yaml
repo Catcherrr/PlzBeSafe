@@ -1,0 +1,13 @@
+post:
+    summary: 내 정보 조회
+    tags:
+        - User
+    requestBody:
+        $ref: '../requestBodies/findUser.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/myinfo.yaml'
+        4043:
+            $ref: '../responses/client_err/noToken.yaml'
+        5000:
+            $ref: '../responses/server_err/default.yaml'

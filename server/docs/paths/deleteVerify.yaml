@@ -1,0 +1,19 @@
+delete:
+    summary: 탈퇴 시에 이메일 인증 데이터도 삭제
+    tags:
+        - Verify
+    parameters:
+        - in: path
+          name: email
+          required: true
+          description: 이메일
+          schema:
+              type: string
+              example: 'gkswlgp456@gmail.com'
+    responses:
+        2000:
+            $ref: '../responses/success/deleteVerify.yaml'
+        4043:
+            $ref: '../responses/client_err/noEmail.yaml'
+        5061:
+            $ref: '../responses/server_err/dbDeleteNot.yaml'

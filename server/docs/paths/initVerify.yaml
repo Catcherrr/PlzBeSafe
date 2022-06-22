@@ -1,0 +1,17 @@
+post:
+    summary: 인증 요청
+    tags:
+        - Verify
+    requestBody:
+        $ref: '../requestBodies/initVerify.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/sendMailVerify.yaml'
+        4043:
+            $ref: '../responses/client_err/noEmail.yaml'
+        5061:
+            $ref: '../responses/server_err/dbInsertNot.yaml'
+        5062:
+            $ref: '../responses/server_err/dbUpdateNot.yaml'
+        5063:
+            $ref: '../responses/server_err/emailError.yaml'

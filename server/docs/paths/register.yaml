@@ -1,0 +1,23 @@
+post:
+    summary: 유저 회원가입
+    tags:
+        - User
+    requestBody:
+        $ref: '../requestBodies/registerUser.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/register.yaml'
+        4010:
+            $ref: '../responses/client_err/unauthorized.yaml'
+        4042:
+            $ref: '../responses/client_err/noPassword.yaml'
+        4043:
+            $ref: '../responses/client_err/noEmail.yaml'
+        4044:
+            $ref: '../responses/client_err/noName.yaml'
+        4046:
+            $ref: '../responses/client_err/noVerifyCode.yaml'
+        5000:
+            $ref: '../responses/server_err/default.yaml'
+        5061:
+            $ref: '../responses/server_err/dbInsertNot.yaml'

@@ -1,0 +1,16 @@
+description: 정보 변경 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 정보 변경 성공
+            result:
+                {
+                    name: '김동의',
+                    age: 24,
+                    gender: 1,
+                    address1: '경기도',
+                    address2: '의왕시',
+                }

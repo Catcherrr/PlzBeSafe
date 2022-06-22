@@ -1,0 +1,32 @@
+/user/register:
+    $ref: './register.yaml'
+/user/login:
+    $ref: './login.yaml'
+/user/myinfo:
+    $ref: './myinfo.yaml'
+/user/changePassword:
+    $ref: './changePassword.yaml'
+/user/changeInfo:
+    $ref: './modifyInfo.yaml'
+/user/changeImage:
+    $ref: './modifyImage.yaml'
+/user/resign:
+    $ref: './resignUser.yaml'
+
+/verify/init:
+    $ref: './initVerify.yaml'
+/verify/check/{num}:
+    $ref: './codeVerify.yaml'
+/verify/delete/{email}:
+    $ref: './deleteVerify.yaml'
+
+/post/all/{page}:
+    $ref: './findAllByPagePost.yaml'
+/post/one/{id}:
+    $ref: './findOnePost.yaml'
+/post/create:
+    $ref: './createPost.yaml'
+/post/modify/{id}:
+    $ref: './updatePost.yaml'
+/post/delete/{id}:
+    $ref: './deletePost.yaml'

@@ -1,0 +1,8 @@
+description: 존재하지 않는 글이나 글 형식에 맞지 않으면 발생하는 오류
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 4048
+            message: 존재하지 않는 글입니다

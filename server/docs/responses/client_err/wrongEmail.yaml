@@ -1,0 +1,8 @@
+description: 틀린 이메일 입력
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 4045
+            message: 이메일을 다시 확인해주세요

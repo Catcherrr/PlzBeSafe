@@ -1,0 +1,13 @@
+post:
+    summary: 글 수정
+    tags:
+        - Post
+    requestBody:
+        $ref: '../requestBodies/updatePost.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/updatePost.yaml'
+        4048:
+            $ref: '../responses/client_err/noPostContent.yaml'
+        5062:
+            $ref: '../responses/server_err/dbUpdateNot.yaml'

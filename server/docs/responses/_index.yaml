@@ -1,0 +1,36 @@
+RegisterSuccess:
+    $ref: './success/register.yaml'
+LoginSuccess:
+    $ref: './success/login.yaml'
+FindMyInfoSuccess:
+    $ref: './success/myInfo.yaml'
+ChangePasswordSuccess:
+    $ref: './success/changePassword.yaml'
+SendMailVerifySuccess:
+    $ref: './success/sendMailVerify.yaml'
+NoEmailError:
+    $ref: './client_err/noEmail.yaml'
+NoPasswordError:
+    $ref: './client_err/noPassword.yaml'
+NoNameError:
+    $ref: './client_err/noName.yaml'
+NoToken:
+    $ref: './client_err/noToken.yaml'
+NoVerifyCodeError:
+    $ref: './client_err/noVerifyCode.yaml'
+NoDatabaseError:
+    $ref: './client_err/noDatabase.yaml'
+ConflictEmailError:
+    $ref: './client_err/conflictEmail.yaml'
+WrongEmailError:
+    $ref: './client_err/wrongEmail.yaml'
+WrongPasswordError:
+    $ref: './client_err/wrongPassword.yaml'
+ServerError:
+    $ref: './server_err/default.yaml'
+DBInsertError:
+    $ref: './server_err/dbInsertNot.yaml'
+DBUpdateError:
+    $ref: './server_err/dbUpdateNot.yaml'
+EmailError:
+    $ref: './server_err/emailError.yaml'

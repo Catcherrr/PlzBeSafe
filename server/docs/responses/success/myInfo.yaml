@@ -1,0 +1,16 @@
+description: 내 정보 조회 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 내 정보 조회 성공
+            result:
+                {
+                    name: '김민지',
+                    image: null,
+                    age: 23,
+                    gender: 0,
+                    address: '서울시 구로구',
+                }
