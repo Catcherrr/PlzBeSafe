@@ -1,5 +1,4 @@
-import { alpha, makeStyles } from '@material-ui/core/styles';
-import { hover } from '@testing-library/user-event/dist/hover';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     loginContainer: {

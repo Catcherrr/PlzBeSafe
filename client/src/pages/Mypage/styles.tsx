@@ -2,14 +2,27 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     SignupContainer: {
-        display: 'block',
-        alignContent: 'center',
-        textAlign: 'center',
+        display: 'flex',
         marginTop: '1%',
-        marginLeft: '10%',
+        marginLeft: '1%',
+        marginRight: '1%',
+        height: '650px',
+        width: '98%',
+    },
+    LeftContainer: {
+        display: 'block',
+        textAlign: 'center',
+        alignContent: 'left',
+        height: '650px',
+        width: '49%',
         paddingTop: '30px',
         paddingBottom: '30px',
-        width: '1000px',
+    },
+    RightContainer: {
+        alignContent: 'right',
+        height: '650px',
+        width: '50%',
+        marginLeft: '1%',
     },
     title: {
         fontWeight: 'bold',
@@ -21,14 +34,14 @@ export default makeStyles((theme) => ({
         fontSize: '10px',
     },
 
-    SignupInput: {
+    ModifyregisterInput: {
         width: '200px',
         height: '70px',
         color: '#000000',
         textAlign: 'center',
         marginTop: '20px',
         marginBottom: '20px',
-        marginLeft: '40%',
+        marginLeft: '35%',
     },
 
     InputTitle: {
@@ -36,10 +49,10 @@ export default makeStyles((theme) => ({
         textAlign: 'left',
     },
 
-    SignupButton: {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(1)}px)`,
-        width: '400px',
+    ModifyregisterButton: {
         fontSize: '20px',
+        marginTop: '20px',
+        marginBottom: '20px',
+        marginLeft: '5%',
     },
 }));

@@ -55,6 +55,9 @@ function Header({ onClick }: Props) {
                             <AccountCircleIcon />
                         </div>
                     </Link>
+                    <Link to="/mypage" className={classes.user}>
+                        <Typography variant="h6">마이페이지</Typography>
+                    </Link>
                 </Box>
             </Toolbar>
         </AppBar>

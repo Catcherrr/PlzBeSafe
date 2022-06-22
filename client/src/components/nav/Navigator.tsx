@@ -14,19 +14,16 @@ const Navigator = () => {
                 <Link to="/about">
                     <WarningIcon />
                 </Link>
-                <span className={classes.iconDesc}>서비스 소개</span>
             </div>
             <div className={classes.icon}>
                 <Link to="/howtouse">
                     <ImportContactsIcon />
                 </Link>
-                <span className={classes.iconDesc}>사용법</span>
             </div>
             <div className={classes.icon}>
                 <Link to="/inquiry">
                     <HelpIcon />
                 </Link>
-                <span className={classes.iconDesc}>문의하기</span>
             </div>
         </div>
     );

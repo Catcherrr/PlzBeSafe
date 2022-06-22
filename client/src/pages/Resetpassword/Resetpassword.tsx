@@ -1,15 +1,16 @@
 import React from 'react';
-import { FieldErrors, useForm } from 'react-hook-form';
 import {
-    Input,
     Typography,
     Button,
     TextField,
-    FormControl,
-    FormHelperText,
     Paper,
+    FormHelperText,
+    FormControl,
+    Input,
 } from '@material-ui/core';
 import useStyles from './styles';
+import { Link } from 'react-router-dom';
+import { FieldErrors, useForm } from 'react-hook-form';
 
 interface IUserData {
     name: string;
@@ -19,7 +20,7 @@ interface IUserData {
     email: string;
 }
 
-const Signup = () => {
+function Resetpassword() {
     const {
         register,
         handleSubmit,
@@ -39,56 +40,13 @@ const Signup = () => {
 
     return (
         <form onSubmit={handleSubmit(onValid, onInValid)}>
-            <Paper className={classes.SignupContainer}>
+            <Paper className={classes.ModifyregisterContainer}>
                 <div>
                     <Typography variant="h3" className={classes.title}>
-                        회원가입
+                        비밀번호 변경
                     </Typography>
                 </div>
-                <div className={classes.SignupInput}>
-                    <FormControl variant="standard">
-                        <p className={classes.InputTitle}>닉네임</p>
-                        <TextField
-                            id="outlined-required"
-                            {...register('name', {
-                                required: '닉네임은 필수 값입니다.',
-                                minLength: {
-                                    value: 5,
-                                    message: '닉네임은 5글자 이상이어야합니다.',
-                                },
-                                maxLength: {
-                                    value: 10,
-                                    message:
-                                        '닉네임은 10글자 이하이어야 합니다.',
-                                },
-                            })}
-                        />
-                        {errors?.name?.message && (
-                            <FormHelperText error id="component-error-text">
-                                {errors.name.message}
-                            </FormHelperText>
-                        )}
-                    </FormControl>
-                </div>
-                <div className={classes.SignupInput}>
-                    <FormControl variant="standard">
-                        <p className={classes.InputTitle}>아이디</p>
-                        <TextField
-                            id="outlined-required"
-                            {...register('id', {
-                                required: '아이디는 필수 값입니다.',
-                            })}
-                            type="email"
-                            placeholder="someone@example.com"
-                        />
-                        {errors?.id?.message && (
-                            <FormHelperText error id="component-error-text">
-                                {errors.id.message}
-                            </FormHelperText>
-                        )}
-                    </FormControl>
-                </div>
-                <div className={classes.SignupInput}>
+                <div className={classes.ModifyregisterInput}>
                     <FormControl variant="standard">
                         <p className={classes.InputTitle}>비밀번호</p>
                         <Input
@@ -108,7 +66,7 @@ const Signup = () => {
                         )}
                     </FormControl>
                 </div>
-                <div className={classes.SignupInput}>
+                <div className={classes.ModifyregisterInput}>
                     <FormControl variant="standard">
                         <p className={classes.InputTitle}>비밀번호 확인</p>
                         <Input
@@ -128,20 +86,13 @@ const Signup = () => {
                         )}
                     </FormControl>
                 </div>
-                <div className={classes.SignupInput}>
-                    <FormControl variant="standard">
-                        <p className={classes.InputTitle}>나이</p>
-                        <Input type="number" />
-                    </FormControl>
-                </div>
-                <div>
+                <div className={classes.ModifyregisterButton}>
                     <Button variant="contained" color="primary" type="submit">
-                        제출
+                        수정완료
                     </Button>
                 </div>
             </Paper>
         </form>
     );
-};
-
-export default Signup;
+}
+export default Resetpassword;
