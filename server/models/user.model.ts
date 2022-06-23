@@ -19,10 +19,10 @@ interface UsersAttributes {
     name: string;
     jwt: string;
     image: string | null;
-    age: number;
-    gender: number;
-    address1: string;
-    address2: string;
+    age: number | null;
+    gender: number | null;
+    address1: string | null;
+    address2: string | null;
     level: number;
 }
 
@@ -32,11 +32,11 @@ export class Users extends Model<UsersAttributes> {
     public password!: string;
     public name!: string;
     public jwt!: string;
-    public image!: string;
-    public age!: number;
-    public gender!: number;
-    public address1!: string;
-    public address2!: string;
+    public image!: string|null;
+    public age!: number|null;
+    public gender!: number|null;
+    public address1!: string|null;
+    public address2!: string|null;
     public level!: number;
 
     // timestamps
