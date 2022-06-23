@@ -52,3 +52,24 @@
     $ref: './modifyRecomment.yaml'
 /recomment/delete/{id}:
     $ref: './deleteRecomment.yaml'
+
+/post/reaction/create/{postId}:
+    $ref: './createPostReaction.yaml'
+/post/reaction/all/{postId}:
+    $ref: './findAllByPostIdReaction.yaml'
+/post/reaction/delete/{id}:
+    $ref: './deletePostReaction.yaml'
+
+/comment/reaction/create/{commentId}:
+    $ref: './createCommentReaction.yaml'
+/comment/reaction/all/{commentId}:
+    $ref: './findAllByCommentIdReaction.yaml'
+/comment/reaction/delete/{id}:
+    $ref: './deleteCommentReaction.yaml'
+
+/recomment/reaction/create/{recommentId}:
+    $ref: './createRecommentReaction.yaml'
+/recomment/reaction/all/{recommentId}:
+    $ref: './findAllByRecommentIdReaction.yaml'
+/recomment/reaction/delete/{id}:
+    $ref: './deleteRecommentReaction.yaml'

@@ -1,0 +1,17 @@
+post:
+    summary: 글 추천
+    tags:
+        - Post Reaction
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    $ref: '../schemas/Reaction.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/createPostReaction.yaml'
+        4048:
+            $ref: '../responses/client_err/noPostContent.yaml'
+        5061:
+            $ref: '../responses/server_err/dbInsertNot.yaml'

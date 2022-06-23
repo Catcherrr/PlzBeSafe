@@ -1,0 +1,17 @@
+delete:
+    summary: 댓글 추천 삭제
+    tags:
+        - Comment Reaction
+    parameters:
+        - in: path
+          name: id
+          required: true
+          description: 추천 id
+          schema:
+              type: number
+              example: 1
+    responses:
+        2000:
+            $ref: '../responses/success/deleteCommentReaction.yaml'
+        5061:
+            $ref: '../responses/server_err/dbDeleteNot.yaml'
