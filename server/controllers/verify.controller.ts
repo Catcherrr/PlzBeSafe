@@ -26,7 +26,7 @@ export const requestVerify = async (req: Request, res: Response) => {
         return;
     }
 
-    createVerify(email)
+    return createVerify(email)
         .then(() => {
             modifyVerify(email, rds, 'req')
                 .then(() => {

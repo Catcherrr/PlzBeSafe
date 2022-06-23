@@ -14,6 +14,7 @@ import { serviceReturnForm, statusTrans } from '../modules/controller.modules';
 import * as dotenv from 'dotenv';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
+import { findStatusByEmailVerify } from '../services/verify.service';
 
 dotenv.config();
 const TOKEN_KEY = process.env.TOKEN_KEY || '';
@@ -69,53 +70,92 @@ export const insertUser = async (req: Request, res: Response) => {
                 ).json(serviceReturnForm);
                 return;
             } else {
-                const transPw = crypto
-                    .createHash('SHA512')
-                    .update(password)
-                    .digest('base64');
-                const token = jwt.sign({ email }, TOKEN_KEY, {
-                    expiresIn: '365d',
-                    subject: 'email',
-                });
+                return findStatusByEmailVerify(email).then((data:any) => {
+                    if(data) {
+                        if(data.status == "ok"){
+                            const transPw = crypto
+                                            .createHash('SHA512')
+                                            .update(password)
+                                            .digest('base64');
+                            const token = jwt.sign({ email }, TOKEN_KEY, {
+                                expiresIn: '365d',
+                                subject: 'email',
+                            });
 
-                const user = {
-                    email: email,
-                    password: transPw,
-                    name: name,
-                    jwt: token,
-                    image: image,
-                    age: age,
-                    gender: gender,
-                    address1: address1,
-                    address2: address2,
-                    level: 0,
-                };
+                            const user = {
+                                email: email,
+                                password: transPw,
+                                name: name,
+                                jwt: token,
+                                image: image,
+                                age: age,
+                                gender: gender,
+                                address1: address1,
+                                address2: address2,
+                                level: 0,
+                            };
 
-                register(user)
-                    .then((data: any) => {
+                            register(user)
+                            .then((data: any) => {
+                                serviceReturnForm = {
+                                    status: statusCode.ok.defaultValue,
+                                    message: '회원가입 성공',
+                                    jwt: data.jwt,
+                                };
+                                res.status(
+                                    statusTrans(statusCode.ok.defaultValue)
+                                ).json(serviceReturnForm);
+                                return;
+                            })
+                            .catch((err: any) => {
+                                console.log(
+                                    '[user/insertUser/checkMail/register] ' + err
+                                );
+                                serviceReturnForm = {
+                                    status: statusCode.server_error.dbInsertError,
+                                    message: '회원가입 실패',
+                                };
+                                res.status(
+                                    statusTrans(statusCode.server_error.dbInsertError)
+                                ).json(serviceReturnForm);
+                                return;
+                            });
+                        } else {
+                            // 인증 하기 전
+                            serviceReturnForm = {
+                                status: statusCode.client_error.unauthorized,
+                                message: '인증 링크를 클릭하지 않았습니다',
+                            };
+                            res.status(
+                                statusTrans(statusCode.client_error.unauthorized)
+                            ).json(serviceReturnForm);
+                            return;
+                        }
+                    } else {
+                        // 인증 요청 X
                         serviceReturnForm = {
-                            status: statusCode.ok.defaultValue,
-                            message: '회원가입 성공',
-                            jwt: data.jwt,
+                            status: statusCode.client_error.noEmail,
+                            message: '인증 요청한 적이 없는 이메일입니다',
                         };
                         res.status(
-                            statusTrans(statusCode.ok.defaultValue)
+                            statusTrans(statusCode.client_error.noEmail)
                         ).json(serviceReturnForm);
                         return;
-                    })
-                    .catch((err: any) => {
-                        console.log(
-                            '[user/insertUser/checkMail/register] ' + err
-                        );
-                        serviceReturnForm = {
-                            status: statusCode.server_error.dbInsertError,
-                            message: '회원가입 실패',
-                        };
-                        res.status(
-                            statusTrans(statusCode.server_error.dbInsertError)
-                        ).json(serviceReturnForm);
-                        return;
-                    });
+
+                    }
+                }).catch((err:any)=>{
+                    console.log(
+                        '[user/insertUser/checkMail/register] ' + err
+                    );
+                    serviceReturnForm = {
+                        status: statusCode.server_error.dbInsertError,
+                        message: '회원가입 실패',
+                    };
+                    res.status(
+                        statusTrans(statusCode.server_error.dbInsertError)
+                    ).json(serviceReturnForm);
+                    return;
+                })
             }
         })
         .catch((err: any) => {
