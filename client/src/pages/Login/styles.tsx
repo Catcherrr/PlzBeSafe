@@ -26,6 +26,17 @@ export default makeStyles((theme) => ({
         marginLeft: '30%',
     },
 
+    errorInput: {
+        width: '200px',
+        height: '15px',
+        color: '#000000',
+        textAlign: 'center',
+        marginTop: '5px',
+        marginBottom: '5px',
+        marginLeft: '30%',
+        paddingTop: '5px',
+    },
+
     TextInput: {
         fontSize: '30px',
         width: '200px',
@@ -36,7 +47,7 @@ export default makeStyles((theme) => ({
         paddingLeft: `calc(1em + ${theme.spacing(1)}px)`,
         width: '300px',
         fontSize: '20px',
-        marginTop: '30px',
+        marginTop: '20px',
         marginBottom: '20px',
     },
     error: {

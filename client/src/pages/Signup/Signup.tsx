@@ -123,7 +123,7 @@ const Signup = () => {
                         <p className={classes.InputTitle}>비밀번호*</p>
                         <Input
                             {...register('password', {
-                                required: '비밀번호는 필수 값입니다.',
+                                required: '비밀번호를 입력해주세요.',
                                 minLength: {
                                     value: 2,
                                     message:
@@ -175,7 +175,7 @@ const Signup = () => {
                                 label="남자"
                             />
                             <FormControlLabel
-                                value="null"
+                                value=""
                                 control={<Radio />}
                                 label="선택안함"
                             />

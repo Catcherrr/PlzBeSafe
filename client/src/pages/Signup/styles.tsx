@@ -22,10 +22,10 @@ export default makeStyles((theme) => ({
     },
 
     SignupInput: {
-        width: '200px',
+        width: '300px',
         height: '70px',
         color: '#000000',
-        textAlign: 'center',
+        textAlign: 'left',
         marginTop: '20px',
         marginBottom: '20px',
         marginLeft: '40%',

@@ -10,32 +10,45 @@ import {
 import useStyles from './styles';
 import { Link } from 'react-router-dom';
 import { FieldErrors, useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useState } from 'react';
+import { ErrorOutlineSharp } from '@material-ui/icons';
 
 interface IUserData {
-    id: string;
+    email: string;
     password: string;
 }
 
 function Login() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<IUserData>({
-        mode: 'onSubmit',
-    });
     const classes = useStyles();
 
-    const onValid = (data: IUserData) => {
-        console.log('# onValid', data);
-    };
+    const [errors, setErrors] = useState('');
 
-    const onInValid = (errors: FieldErrors) => {
-        console.log('# onInValid', errors);
+    const { register, handleSubmit } = useForm<IUserData>();
+
+    const onSubmit = async (data: IUserData) => {
+        console.log(data);
+        await axios
+            .post(
+                'http://localhost:1234/api/user/login',
+                {
+                    email: data.email,
+                    password: data.password,
+                },
+                { headers: { 'Content-Type': 'application/json' } }
+            )
+            .then((response) => {
+                localStorage.setItem('user-token', response.data.result.jwt);
+                window.location.href = '/';
+            })
+            .catch((error) => {
+                setErrors(error.response.data.message);
+                console.log(error.response.data);
+            });
     };
 
     return (
-        <form onSubmit={handleSubmit(onValid, onInValid)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <Paper className={classes.loginContainer}>
                 <div>
                     <Typography variant="h3" className={classes.title}>
@@ -51,16 +64,8 @@ function Login() {
                             placeholder="someone@example.com"
                             type="email"
                             className={classes.TextInput}
-                            {...register('id', {
-                                required: 'id를 입력해주세요',
-                            })}
+                            {...register('email')}
                         />
-
-                        {errors?.id?.message && (
-                            <FormHelperText error id="component-error-text">
-                                {errors.id.message}
-                            </FormHelperText>
-                        )}
                     </FormControl>
                 </div>
                 <div className={classes.loginInput}>
@@ -72,20 +77,15 @@ function Login() {
                             autoComplete="current-password"
                             variant="standard"
                             className={classes.TextInput}
-                            {...register('password', {
-                                required: '비밀번호는 필수 값입니다.',
-                                pattern: {
-                                    value: /^[a-zA-Z]*$/,
-                                    message: '비밀번호는 영어만 가능합니다.',
-                                },
-                            })}
+                            {...register('password')}
                         />
-
-                        {errors?.password?.message && (
-                            <FormHelperText error id="component-error-text">
-                                {errors.password.message}
-                            </FormHelperText>
-                        )}
+                    </FormControl>
+                </div>
+                <div className={classes.errorInput}>
+                    <FormControl variant="standard">
+                        <FormHelperText error id="component-error-text">
+                            {errors}
+                        </FormHelperText>
                     </FormControl>
                 </div>
                 <div>

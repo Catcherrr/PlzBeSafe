@@ -15,7 +15,6 @@ const RoutesComponent = () => {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<About />} />
-            <Route path="/about" element={<About />} />
             <Route path="/inquiry" element={<Inquiry />} />
             <Route path="/howtouse" element={<Howtouse />} />
             <Route path="/signup" element={<Signup />} />
