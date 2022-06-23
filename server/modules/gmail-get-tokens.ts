@@ -20,8 +20,6 @@ const oauth2Client = new google.auth.OAuth2(
 
 const GMAIL_SCOPES = [
     'https://mail.google.com/',
-    'https://www.googleapis.com/auth/gmail.modify',
-    'https://www.googleapis.com/auth/gmail.compose',
     'https://www.googleapis.com/auth/gmail.send',
 ];
 

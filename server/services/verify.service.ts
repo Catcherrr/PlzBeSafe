@@ -20,9 +20,7 @@ export const removeVerify = (email: string) => {
 };
 
 export const findStatusByEmailVerify = async (email: string) => {
-    return Verifies.findOne({ where: { email } }).then(
-        (data: any) => data.status
-    );
+    return Verifies.findOne({ where: { email } })
 };
 
 export const findByCodeVerify = async (code: string) => {
