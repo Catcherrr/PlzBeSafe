@@ -1,0 +1,11 @@
+type: object
+required:
+    - jwt
+properties:
+    jwt:
+        type: string
+        description: 추천하는 유저 jwt
+example:
+    {
+        jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwiaWF0IjoxNjU1NDAxNDg3LCJleHAiOjE2ODY5Mzc0ODcsInN1YiI6ImVtYWlsIn0.wvhv8lh9LJ6xa8P6KI89uWF_ZWpKBMiLIu9dGQVux50',
+    }

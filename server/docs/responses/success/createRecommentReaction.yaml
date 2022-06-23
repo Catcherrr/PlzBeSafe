@@ -1,0 +1,9 @@
+description: 대댓글 추천 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 대댓글 추천 성공
+            result: { id: 2 }

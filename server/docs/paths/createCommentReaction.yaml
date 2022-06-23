@@ -1,0 +1,17 @@
+post:
+    summary: 댓글 추천
+    tags:
+        - Comment Reaction
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    $ref: '../schemas/Reaction.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/createCommentReaction.yaml'
+        4048:
+            $ref: '../responses/client_err/noCommentContent.yaml'
+        5061:
+            $ref: '../responses/server_err/dbInsertNot.yaml'
