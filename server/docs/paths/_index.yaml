@@ -1,5 +1,5 @@
 /user/register:
-    $ref: './register.yaml'
+    $ref: './createUser.yaml'
 /user/login:
     $ref: './login.yaml'
 /user/myinfo:
@@ -11,7 +11,7 @@
 /user/changeImage:
     $ref: './modifyImage.yaml'
 /user/resign:
-    $ref: './resignUser.yaml'
+    $ref: './deleteUser.yaml'
 
 /verify/init:
     $ref: './initVerify.yaml'
@@ -27,6 +27,49 @@
 /post/create:
     $ref: './createPost.yaml'
 /post/modify/{id}:
-    $ref: './updatePost.yaml'
+    $ref: './modifyPost.yaml'
 /post/delete/{id}:
     $ref: './deletePost.yaml'
+
+/comment/all/{postId}:
+    $ref: './findAllByPostIdComment.yaml'
+/comment/one/{id}:
+    $ref: './findOneComment.yaml'
+/comment/create/{postId}:
+    $ref: './createComment.yaml'
+/comment/modify/{id}:
+    $ref: './modifyComment.yaml'
+/comment/delete/{id}:
+    $ref: './deleteComment.yaml'
+
+/recomment/all/{commentId}:
+    $ref: './findAllByCommentIdRecomment.yaml'
+/recomment/one/{id}:
+    $ref: './findOneRecomment.yaml'
+/recomment/create/{commentId}:
+    $ref: './createRecomment.yaml'
+/recomment/modify/{id}:
+    $ref: './modifyRecomment.yaml'
+/recomment/delete/{id}:
+    $ref: './deleteRecomment.yaml'
+
+/post/reaction/create/{postId}:
+    $ref: './createPostReaction.yaml'
+/post/reaction/all/{postId}:
+    $ref: './findAllByPostIdReaction.yaml'
+/post/reaction/delete/{id}:
+    $ref: './deletePostReaction.yaml'
+
+/comment/reaction/create/{commentId}:
+    $ref: './createCommentReaction.yaml'
+/comment/reaction/all/{commentId}:
+    $ref: './findAllByCommentIdReaction.yaml'
+/comment/reaction/delete/{id}:
+    $ref: './deleteCommentReaction.yaml'
+
+/recomment/reaction/create/{recommentId}:
+    $ref: './createRecommentReaction.yaml'
+/recomment/reaction/all/{recommentId}:
+    $ref: './findAllByRecommentIdReaction.yaml'
+/recomment/reaction/delete/{id}:
+    $ref: './deleteRecommentReaction.yaml'

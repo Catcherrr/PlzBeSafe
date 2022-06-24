@@ -1,0 +1,23 @@
+post:
+    summary: 댓글 작성
+    tags:
+        - Comment
+    parameters:
+        - in: path
+          name: postId
+          required: true
+          description: postId는 파라미터로 전달
+          schema:
+              type: number
+              example: 1
+    requestBody:
+        $ref: '../requestBodies/createComment.yaml'
+    responses:
+        2000:
+            $ref: '../responses/success/createComment.yaml'
+        4048:
+            $ref: '../responses/client_err/noPostContent.yaml'
+        4049:
+            $ref: '../responses/client_err/noCommentContent.yaml'
+        5061:
+            $ref: '../responses/server_err/dbInsertNot.yaml'

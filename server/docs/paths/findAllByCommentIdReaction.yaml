@@ -1,0 +1,17 @@
+get:
+    summary: 댓글별로 추천 전체 조회
+    tags:
+        - Comment Reaction
+    parameters:
+        - in: path
+          name: commentId
+          required: true
+          description: commentId로 추천 전체 조회
+          schema:
+              type: number
+              example: 1
+    responses:
+        2000:
+            $ref: '../responses/success/findAllByCommentIdReaction.yaml'
+        5063:
+            $ref: '../responses/server_err/dbSelectNot.yaml'

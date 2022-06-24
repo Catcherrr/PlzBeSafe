@@ -8,10 +8,10 @@ const {
     EMAIL_CLIENT_ID,
     EMAIL_CLIENT_SECRET,
     EMAIL_ACCESS_TOKEN,
-    EMAIL_OAUTH_TOKEN_EXPIRE,
     EMAIL_REFRESH_TOKEN,
 } = process.env;
 const transporter = nodemailer.createTransport({
+    service: 'gmail',
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
         clientSecret: EMAIL_CLIENT_SECRET,
         refreshToken: EMAIL_REFRESH_TOKEN,
         accessToken: EMAIL_ACCESS_TOKEN,
-        expires: Number.parseInt(EMAIL_OAUTH_TOKEN_EXPIRE || '', 10),
+        expires: 3600,
     },
 });
 
@@ -33,7 +33,7 @@ export const sendMail = (mailOptions: {
     html: string;
 }) =>
     new Promise((resolve: any, reject: any) => {
-        transporter.sendMail(mailOptions, (err: any) => {
+        transporter.sendMail({from:'catcherrr.official@gmail.com',...mailOptions}, (err: any) => {
             if (err) {
                 console.error(
                     `메일 보내기 실패 ! - [${err.name}] ${err.message}`
@@ -43,4 +43,5 @@ export const sendMail = (mailOptions: {
             }
             resolve();
         });
+        transporter.close();
     });

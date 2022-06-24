@@ -4,6 +4,12 @@ Verify:
     $ref: './Verify.yaml'
 Post:
     $ref: './Post.yaml'
+Comment:
+    $ref: './Comment.yaml'
+Recomment:
+    $ref: './Recomment.yaml'
+Reaction:
+    $ref: './Reaction.yaml'
 Error:
     $ref: './Error.yaml'
 Success:

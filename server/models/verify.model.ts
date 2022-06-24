@@ -11,7 +11,7 @@ interface VerifiesAttributes {
 export class Verifies extends Model<VerifiesAttributes> {
     public readonly id!: number; //굳이 안넣어줘도 될 것 같지만 공식문서에 있으니깐 일단 넣어줌.
     public email!: string;
-    public verify_flag!: string;
+    public status!: string;
     public code!: string;
     public static associations: {};
 }

@@ -1,0 +1,42 @@
+description: 글별로 댓글 찾기 성공
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Success.yaml'
+        example:
+            status: 2000
+            message: 글별로 댓글 찾기 성공
+            result:
+                {
+                    'count': 8,
+                    'rows':
+                        [
+                            {
+                                id: 2,
+                                postId: 1,
+                                userId: 1,
+                                content: '블라블라블라',
+                                createdAt: '2022-06-16T17:16:18.000Z',
+                                updatedAt: '2022-06-16T17:16:18.000Z',
+                                deletedAt: null,
+                            },
+                            {
+                                id: 3,
+                                postId: 1,
+                                userId: 1,
+                                content: '블라블라블라',
+                                createdAt: '2022-06-16T17:16:18.000Z',
+                                updatedAt: '2022-06-16T17:16:18.000Z',
+                                deletedAt: null,
+                            },
+                            {
+                                id: 4,
+                                postId: 1,
+                                userId: 1,
+                                content: '블라블라블라',
+                                createdAt: '2022-06-16T17:16:18.000Z',
+                                updatedAt: '2022-06-16T17:16:18.000Z',
+                                deletedAt: null,
+                            },
+                        ],
+                }

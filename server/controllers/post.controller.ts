@@ -6,6 +6,7 @@ import {
     findAllByPagePosts as pagenationPost,
     deletePosts,
 } from '../services/post.service';
+import { findOneByJwtUser } from '../services/user.service';
 import { statusCode } from '../util/responseForm';
 import { serviceReturnForm, statusTrans } from '../modules/controller.modules';
 
@@ -58,30 +59,59 @@ export const insertPost = async (req: Request, res: Response) => {
         return;
     }
 
-    return uploadPost(
-        { title, content, latitude, longitude, incident_date },
-        jwt
-    )
+    return findOneByJwtUser(jwt)
         .then((data: any) => {
             if (data) {
+                return uploadPost({
+                    userId: data.id,
+                    title,
+                    content,
+                    latitude,
+                    longitude,
+                    incident_date,
+                })
+                    .then((data: any) => {
+                        if (data) {
+                            serviceReturnForm = {
+                                status: statusCode.ok.defaultValue,
+                                message: '글쓰기 성공',
+                                result: { id: data.id },
+                            };
+                            res.status(
+                                statusTrans(statusCode.ok.defaultValue)
+                            ).json(serviceReturnForm);
+                            return;
+                        }
+                    })
+                    .catch((err: any) => {
+                        console.log('[post/insertPost/uploadPost] ' + err);
+                        serviceReturnForm = {
+                            status: statusCode.server_error.dbInsertError,
+                            message: '글쓰기 실패',
+                        };
+                        res.status(
+                            statusTrans(statusCode.server_error.dbInsertError)
+                        ).json(serviceReturnForm);
+                        return;
+                    });
+            } else {
                 serviceReturnForm = {
-                    status: statusCode.ok.defaultValue,
-                    message: '글쓰기 성공',
-                    result: { id: data.id },
+                    status: statusCode.server_error.dbSelectError,
+                    message: '존재하지 않은 회원입니다',
                 };
-                res.status(statusTrans(statusCode.ok.defaultValue)).json(
-                    serviceReturnForm
-                );
+                res.status(
+                    statusTrans(statusCode.server_error.dbSelectError)
+                ).json(serviceReturnForm);
                 return;
             }
         })
         .catch((err: any) => {
-            console.log('[post/insertPost/uploadPost] ' + err);
+            console.log('[comment/insertComment/findOneByJwtUser] ' + err);
             serviceReturnForm = {
-                status: statusCode.server_error.dbInsertError,
-                message: '글쓰기 실패',
+                status: statusCode.server_error.dbSelectError,
+                message: '회원을 찾는 데 오류가 발생했습니다',
             };
-            res.status(statusTrans(statusCode.server_error.dbInsertError)).json(
+            res.status(statusTrans(statusCode.server_error.dbSelectError)).json(
                 serviceReturnForm
             );
             return;
@@ -233,7 +263,7 @@ export const findAllByPagePost = async (req: Request, res: Response) => {
             }
         })
         .catch((err: any) => {
-            console.log('[post/findOnePost/inquirePost] ' + err);
+            console.log('[post/findAllByPagePost/pagenationPost] ' + err);
             serviceReturnForm = {
                 status: statusCode.server_error.dbSelectError,
                 message: '페이지당 글 찾기 실패',

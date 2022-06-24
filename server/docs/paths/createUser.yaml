@@ -3,10 +3,10 @@ post:
     tags:
         - User
     requestBody:
-        $ref: '../requestBodies/registerUser.yaml'
+        $ref: '../requestBodies/createUser.yaml'
     responses:
         2000:
-            $ref: '../responses/success/register.yaml'
+            $ref: '../responses/success/createUser.yaml'
         4010:
             $ref: '../responses/client_err/unauthorized.yaml'
         4042:

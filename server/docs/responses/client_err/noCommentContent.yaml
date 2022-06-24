@@ -1,0 +1,8 @@
+description: 존재하지 않는 댓글이나 댓글 형식에 맞지 않으면 발생하는 오류
+content:
+    application/json:
+        schema:
+            $ref: '../../schemas/Error.yaml'
+        example:
+            status: 4049
+            message: 존재하지 않는 댓글입니다

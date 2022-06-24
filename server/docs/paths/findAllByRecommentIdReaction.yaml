@@ -1,0 +1,17 @@
+get:
+    summary: 대댓글별로 추천 전체 조회
+    tags:
+        - Recomment Reaction
+    parameters:
+        - in: path
+          name: recommentId
+          required: true
+          description: recommentId로 추천 전체 조회
+          schema:
+              type: number
+              example: 1
+    responses:
+        2000:
+            $ref: '../responses/success/findAllByRecommentIdReaction.yaml'
+        5063:
+            $ref: '../responses/server_err/dbSelectNot.yaml'

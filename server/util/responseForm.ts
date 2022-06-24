@@ -15,7 +15,7 @@ export const statusCode = {
         wrongPassword: 4046,
         noVerifyCode: 4047,
         noPostContent: 4048,
-        noComentContent: 4049,
+        noCommentContent: 4049,
         noDataBase: 4050,
         conflictEmail: 4091,
     },
@@ -28,5 +28,5 @@ export const statusCode = {
         dbSelectError: 5063,
         dbDeleteError: 5064,
         smtpError: 5065,
-    },
+    }
 };
