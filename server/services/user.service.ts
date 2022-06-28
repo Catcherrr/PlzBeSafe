@@ -26,7 +26,7 @@ export const updateInfoUser = (
     return Users.update(
         { name, age, gender, address1, address2 },
         { where: { jwt } }
-    );
+    ).then(() => Users.findOne({where: {jwt}}));
 };
 
 export const updateImageUser = (jwt: string, url: string) => {
