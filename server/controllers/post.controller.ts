@@ -12,6 +12,7 @@ import { serviceReturnForm, statusTrans } from '../modules/controller.modules';
 
 let serviceReturnForm = {};
 
+// 글쓰기
 export const insertPost = async (req: Request, res: Response) => {
     const { jwt, title, content, longitude, latitude, incident_date } =
         req.body;
@@ -118,6 +119,7 @@ export const insertPost = async (req: Request, res: Response) => {
         });
 };
 
+// 글수정
 export const updatePost = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { title, content, longitude, latitude, incident_date } = req.body;
@@ -206,20 +208,38 @@ export const updatePost = async (req: Request, res: Response) => {
         });
 };
 
+// 글 1개 찾기
 export const findOnePost = async (req: Request, res: Response) => {
     const { id } = req.params;
-
+    
     return inquirePost(Number(id))
         .then((data: any) => {
             if (data) {
                 serviceReturnForm = {
                     status: statusCode.ok.defaultValue,
-                    message: '한 개의 글 찾기 성공',
-                    result: data,
+                    message: '글 1개 조회 성공',
+                    result: {
+                        title: data.title,
+                        writer: data.user.name,
+                        content: data.content,
+                        latitude: data.latitude,
+                        longitude: data.longitude,
+                        incident_date: data.incident_date,
+                        updatedAt: data.updatedAt,
+                        reactionCount: data.postReactions.length,
+                        comments: data.comments.map((v:any, i:number)=>{
+                            return {
+                                content: v.content,
+                                writer: v.user.name,
+                                updatedAt: v.updatedAt,
+                                reactionCount: v.commentReactions.length,
+                            }
+                        })
+                    },
                 };
-                res.status(statusTrans(statusCode.ok.defaultValue)).json(
-                    serviceReturnForm
-                );
+                res.status(
+                    statusTrans(statusCode.ok.defaultValue)
+                ).json(serviceReturnForm);
                 return;
             } else {
                 serviceReturnForm = {
@@ -245,6 +265,7 @@ export const findOnePost = async (req: Request, res: Response) => {
         });
 };
 
+// 글 페이지 별로 조회
 export const findAllByPagePost = async (req: Request, res: Response) => {
     const { page } = req.params;
 
@@ -275,6 +296,7 @@ export const findAllByPagePost = async (req: Request, res: Response) => {
         });
 };
 
+// 글 1개 삭제
 export const deleteOnePost = async (req: Request, res: Response) => {
     const { id } = req.params;
 

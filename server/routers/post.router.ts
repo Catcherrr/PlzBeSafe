@@ -3,8 +3,7 @@ import * as postController from '../controllers/post.controller';
 
 const postRouter = Router();
 
-postRouter.get('/one/:id', postController.findOnePost);
-postRouter.get('/all/:page', postController.findAllByPagePost);
+postRouter.get('/:id', postController.findOnePost);
 postRouter.post('/create', postController.insertPost);
 postRouter.post('/modify/:id', postController.updatePost);
 postRouter.delete('/delete/:id', postController.deleteOnePost);

@@ -20,9 +20,7 @@
 /verify/delete/{email}:
     $ref: './deleteVerify.yaml'
 
-/post/all/{page}:
-    $ref: './findAllByPagePost.yaml'
-/post/one/{id}:
+/post/{id}:
     $ref: './findOnePost.yaml'
 /post/create:
     $ref: './createPost.yaml'
