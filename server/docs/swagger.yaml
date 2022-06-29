@@ -625,41 +625,7 @@
                                 },
                         },
                 },
-            '/post/all/{page}':
-                {
-                    'get':
-                        {
-                            'summary': '페이지당 글 10개 조회',
-                            'tags': ['Post'],
-                            'parameters':
-                                [
-                                    {
-                                        'in': 'path',
-                                        'name': 'page',
-                                        'required': true,
-                                        'description': 'page로 10개의 글 조회',
-                                        'schema':
-                                            { 'type': 'number', 'example': 1 },
-                                    },
-                                ],
-                            'responses':
-                                {
-                                    '2000':
-                                        {
-                                            '$ref': '#/components/responses/SelectAllPostSuccess',
-                                        },
-                                    '4048':
-                                        {
-                                            '$ref': '#/paths/~1post~1create/post/responses/4048',
-                                        },
-                                    '5063':
-                                        {
-                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
-                                        },
-                                },
-                        },
-                },
-            '/post/one/{id}':
+            '/post/{id}':
                 {
                     'get':
                         {
@@ -875,7 +841,7 @@
                                         },
                                     '5063':
                                         {
-                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                            '$ref': '#/paths/~1post~1%7Bid%7D/get/responses/5063',
                                         },
                                 },
                         },
@@ -924,7 +890,7 @@
                                         },
                                     '5063':
                                         {
-                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                            '$ref': '#/paths/~1post~1%7Bid%7D/get/responses/5063',
                                         },
                                 },
                         },
@@ -1145,7 +1111,7 @@
                                         },
                                     '5063':
                                         {
-                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                            '$ref': '#/paths/~1post~1%7Bid%7D/get/responses/5063',
                                         },
                                 },
                         },
@@ -1204,7 +1170,7 @@
                                         },
                                     '5063':
                                         {
-                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                            '$ref': '#/paths/~1post~1%7Bid%7D/get/responses/5063',
                                         },
                                 },
                         },
@@ -1518,7 +1484,7 @@
                                         },
                                     '5063':
                                         {
-                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                            '$ref': '#/paths/~1post~1%7Bid%7D/get/responses/5063',
                                         },
                                 },
                         },
@@ -1698,7 +1664,7 @@
                                         },
                                     '5063':
                                         {
-                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                            '$ref': '#/paths/~1post~1%7Bid%7D/get/responses/5063',
                                         },
                                 },
                         },
@@ -1878,7 +1844,7 @@
                                         },
                                     '5063':
                                         {
-                                            '$ref': '#/paths/~1post~1one~1%7Bid%7D/get/responses/5063',
+                                            '$ref': '#/paths/~1post~1%7Bid%7D/get/responses/5063',
                                         },
                                 },
                         },
@@ -2344,16 +2310,50 @@
                                             'example':
                                                 {
                                                     'status': 2000,
-                                                    'message': '한 개의 글 찾기 성공',
+                                                    'message': '글 1개 조회 성공',
                                                     'result':
                                                         {
-                                                            'id': 2,
-                                                            'postId': 1,
-                                                            'userId': 1,
+                                                            'title': '돈 많이 번 사건',
+                                                            'writer': '김송이',
                                                             'content': '블라블라블라',
-                                                            'createdAt': '2022-06-16T17:16:18.000Z',
-                                                            'updatedAt': '2022-06-16T17:16:18.000Z',
-                                                            'deletedAt': null,
+                                                            'latitude': '37.34000000000000',
+                                                            'longitude': '126.55000000000000',
+                                                            'incident_date': '2022-06-01T15:00:00.000Z',
+                                                            'updatedAt': '2022-06-29T08:38:40.000Z',
+                                                            'reactionCount': 0,
+                                                            'comments"':
+                                                                [
+                                                                    {
+                                                                        'content': '댓글123',
+                                                                        'writer': '김송이',
+                                                                        'updatedAt': '2022-06-29T08:38:51.000Z',
+                                                                        'reactionCount': 0,
+                                                                    },
+                                                                    {
+                                                                        'content': '댓글123',
+                                                                        'writer': '김송이',
+                                                                        'updatedAt': '2022-06-29T08:38:53.000Z',
+                                                                        'reactionCount': 1,
+                                                                    },
+                                                                    {
+                                                                        'content"': '댓글123',
+                                                                        'writer"': '김송이',
+                                                                        'updatedAt"': '2022-06-29T08:38:54.000Z',
+                                                                        'reactionCount"': 0,
+                                                                    },
+                                                                    {
+                                                                        'content': '댓글123',
+                                                                        'writer': '김송이',
+                                                                        'updatedAt': '2022-06-29T08:38:54.000Z',
+                                                                        'reactionCount': 0,
+                                                                    },
+                                                                    {
+                                                                        'content': '댓글123',
+                                                                        'writer': '김송이',
+                                                                        'updatedAt': '2022-06-29T08:38:55.000Z',
+                                                                        'reactionCount': 0,
+                                                                    },
+                                                                ],
                                                         },
                                                 },
                                         },
