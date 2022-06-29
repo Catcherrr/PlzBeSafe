@@ -6,9 +6,13 @@ import Main from './Main/Main';
 import Modifyregister from './Modifyregister/Modifyregister';
 import Signup from './Signup/Signup';
 import Mypage from './Mypage/Mypage';
-import Resetpassword from './Resetpassword/Resetpassword';
 import Inquiry from './Inquiry/Inquiry';
 import Howtouse from './Howtouse/Howtouse';
+import SignupOk from './Signup/SignupOk';
+import Changepassword from './Changepassword/Changepassword';
+import ChangepasswordOk from './Changepassword/ChangepasswordOk';
+import ModifyregisterOk from './Modifyregister/ModifyregisterOk';
+
 const RoutesComponent = () => {
     return (
         <Routes>
@@ -18,9 +22,12 @@ const RoutesComponent = () => {
             <Route path="/inquiry" element={<Inquiry />} />
             <Route path="/howtouse" element={<Howtouse />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/signupok" element={<SignupOk />} />
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/modifyregister" element={<Modifyregister />} />
-            <Route path="/resetpassword" element={<Resetpassword />} />
+            <Route path="/modifyregisterok" element={<ModifyregisterOk />} />
+            <Route path="/changepassword" element={<Changepassword />} />
+            <Route path="/changepasswordok" element={<ChangepasswordOk />} />
         </Routes>
     );
 };

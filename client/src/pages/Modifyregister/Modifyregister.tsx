@@ -6,40 +6,51 @@ import {
     Paper,
     FormHelperText,
     FormControl,
-    Input,
+    MenuItem,
+    RadioGroup,
+    FormControlLabel,
+    Radio,
 } from '@material-ui/core';
 import useStyles from './styles';
 import { Link } from 'react-router-dom';
 import { FieldErrors, useForm } from 'react-hook-form';
-
-interface IUserData {
-    name: string;
-    age: number;
-    id: string;
-    password: string;
-    email: string;
-}
-
+import { useState } from 'react';
+import { IModifyData } from '../../store/type/interfaces';
+import axios from 'axios';
 function Modifyregister() {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<IUserData>({
+    } = useForm<IModifyData>({
         mode: 'onSubmit',
     });
     const classes = useStyles();
 
-    const onValid = (data: IUserData) => {
-        console.log('# onValid', data);
+    const onSubmit = async (data: IModifyData) => {
+        console.log(data);
+        await axios
+            .put(
+                'http://localhost:1234/api/user/changeInfo',
+                {
+                    jwt: localStorage.getItem('user-token'),
+                    name: data.name,
+                    age: data.age,
+                    gender: data.gender.toString() === '2' ? null : data.gender,
+                    address: data.address,
+                },
+                { headers: { 'Content-Type': 'application/json' } }
+            )
+            .then((response) => {
+                console.log(response.data);
+                window.location.href = '/modifyregisterok';
+            })
+            .catch((error) => {
+                console.log(error.response);
+            });
     };
-
-    const onInValid = (errors: FieldErrors) => {
-        console.log('# onInValid', errors);
-    };
-
     return (
-        <form onSubmit={handleSubmit(onValid, onInValid)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <Paper className={classes.ModifyregisterContainer}>
                 <div>
                     <Typography variant="h3" className={classes.title}>
@@ -73,34 +84,96 @@ function Modifyregister() {
                 </div>
                 <div className={classes.ModifyregisterInput}>
                     <FormControl variant="standard">
-                        <p className={classes.InputTitle}>아이디</p>
-                        <TextField
-                            id="outlined-required"
-                            {...register('id', {
-                                required: '아이디는 필수 값입니다.',
-                            })}
-                            type="email"
-                            placeholder="someone@example.com"
-                        />
-                        {errors?.id?.message && (
-                            <FormHelperText error id="component-error-text">
-                                {errors.id.message}
-                            </FormHelperText>
-                        )}
+                        <p className={classes.InputTitle}>나이</p>
+                        <FormControl>
+                            <TextField
+                                select
+                                {...register('age')}
+                                defaultValue={'0'}
+                                fullWidth
+                            >
+                                ㅇ<MenuItem value={0}>선택안함</MenuItem>
+                                <MenuItem value={9}>9세이하</MenuItem>
+                                <MenuItem value={10}>10세</MenuItem>
+                                <MenuItem value={11}>11세</MenuItem>
+                                <MenuItem value={12}>12세</MenuItem>
+                                <MenuItem value={13}>13세</MenuItem>
+                                <MenuItem value={14}>14세</MenuItem>
+                                <MenuItem value={15}>15세</MenuItem>
+                                <MenuItem value={16}>16세</MenuItem>
+                                <MenuItem value={17}>17세</MenuItem>
+                                <MenuItem value={18}>18세</MenuItem>
+                                <MenuItem value={19}>19세</MenuItem>
+                                <MenuItem value={20}>20세</MenuItem>
+                                <MenuItem value={21}>21세</MenuItem>
+                                <MenuItem value={22}>22세</MenuItem>
+                                <MenuItem value={23}>23세</MenuItem>
+                                <MenuItem value={24}>24세</MenuItem>
+                                <MenuItem value={25}>25세</MenuItem>
+                                <MenuItem value={26}>26세</MenuItem>
+                                <MenuItem value={27}>27세</MenuItem>
+                                <MenuItem value={28}>28세</MenuItem>
+                                <MenuItem value={29}>29세</MenuItem>
+                                <MenuItem value={30}>30세</MenuItem>
+                                <MenuItem value={31}>31세</MenuItem>
+                                <MenuItem value={32}>32세</MenuItem>
+                                <MenuItem value={33}>33세</MenuItem>
+                                <MenuItem value={34}>34세</MenuItem>
+                                <MenuItem value={35}>35세</MenuItem>
+                                <MenuItem value={36}>36세</MenuItem>
+                                <MenuItem value={37}>37세</MenuItem>
+                                <MenuItem value={38}>38세</MenuItem>
+                                <MenuItem value={39}>39세</MenuItem>
+                                <MenuItem value={40}>40세</MenuItem>
+                                <MenuItem value={41}>41세이상</MenuItem>
+                            </TextField>
+                        </FormControl>
                     </FormControl>
                 </div>
                 <div className={classes.ModifyregisterInput}>
                     <FormControl variant="standard">
-                        <p className={classes.InputTitle}>나이</p>
-                        <Input type="number" />
+                        <p className={classes.InputTitle}>성별</p>
+                        <RadioGroup
+                            row
+                            aria-labelledby="demo-row-radio-buttons-group-label"
+                            defaultValue="2"
+                        >
+                            <FormControlLabel
+                                {...register('gender')}
+                                value="0"
+                                control={<Radio />}
+                                label="여자"
+                            />
+                            <FormControlLabel
+                                {...register('gender')}
+                                value="1"
+                                control={<Radio />}
+                                label="남자"
+                            />
+                            <FormControlLabel
+                                {...register('gender')}
+                                value="2"
+                                control={<Radio />}
+                                label="선택안함"
+                            />
+                        </RadioGroup>
                     </FormControl>
                 </div>
-                <div className={classes.ModifyregisterButton}>
-                    <Link to="/resetpassword">
-                        <Button variant="contained" color="primary">
-                            비밀번호 변경
-                        </Button>
-                    </Link>
+                <div className={classes.ModifyregisterInput}>
+                    <FormControl variant="standard">
+                        <p className={classes.InputTitle}>주소</p>
+                        <TextField
+                            id="outlined-required"
+                            {...register('address')}
+                            placeholder="서울시 강남구"
+                        />
+                        <FormHelperText
+                            className={classes.conditiontext}
+                            id="component-error-text"
+                        >
+                            주소는 OO시 OO구 형식입니다.
+                        </FormHelperText>
+                    </FormControl>
                 </div>
                 <div className={classes.ModifyregisterButton}>
                     <Button variant="contained" color="primary" type="submit">

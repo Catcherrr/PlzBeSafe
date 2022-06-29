@@ -2,6 +2,8 @@
     "scripts": {
         "create_db": "ts-node ./server/migrations/create-db.ts",
         "create_table_posts": "ts-node ./server/migrations/create-table/3.create-table-posts.ts",
+        "create_table_verifies": "ts-node ./server/migrations/create-table/2.create-table-verifies.ts",
+        "create_table_users": "ts-node ./server/migrations/create-table/1.create-table-users.ts",
         "migration_all": "ts-node ./server/migrations/migration-all-table.ts",
         "api-docs": "swagger-cli bundle ./server/docs/openapi.yaml --outfile server/docs/swagger.yaml",
         "server": "cd server && nodemon --watch \"./**/*.ts\" --exec \"ts-node\" ./server.ts",

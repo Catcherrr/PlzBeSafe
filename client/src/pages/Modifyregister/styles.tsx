@@ -6,10 +6,10 @@ export default makeStyles((theme) => ({
         alignContent: 'center',
         textAlign: 'center',
         marginTop: '2%',
-        marginLeft: '30%',
+        marginLeft: '25%',
         paddingTop: '50px',
         paddingBottom: '50px',
-        width: '500px',
+        width: '700px',
     },
     LeftContainer: {
         display: 'block',
@@ -37,10 +37,10 @@ export default makeStyles((theme) => ({
     },
 
     ModifyregisterInput: {
-        width: '200px',
+        width: '300px',
         height: '70px',
         color: '#000000',
-        textAlign: 'center',
+        textAlign: 'left',
         marginTop: '20px',
         marginBottom: '20px',
         marginLeft: '35%',
@@ -56,5 +56,25 @@ export default makeStyles((theme) => ({
         marginTop: '20px',
         marginBottom: '20px',
         marginLeft: '5%',
+    },
+    conditiontext: {
+        color: '#000000',
+    },
+
+    ModifyregisterOkContainer: {
+        display: 'block',
+        alignContent: 'center',
+        textAlign: 'center',
+        marginTop: '13%',
+        marginLeft: '20%',
+        paddingTop: '30px',
+        paddingBottom: '30px',
+        width: '700px',
+    },
+
+    oktitle: {
+        fontWeight: 'bold',
+        marginBottom: '50px',
+        color: '#1976d2',
     },
 }));
