@@ -61,4 +61,10 @@ export default makeStyles((theme) => ({
         color: '#000000',
         fontSize: '15px',
     },
+
+    SignupText: {
+        '&:hover': {
+            textDecoration: 'underline',
+        },
+    },
 }));

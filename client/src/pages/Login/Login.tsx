@@ -9,24 +9,19 @@ import {
 } from '@material-ui/core';
 import useStyles from './styles';
 import { Link } from 'react-router-dom';
-import { FieldErrors, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useState } from 'react';
-import { ErrorOutlineSharp } from '@material-ui/icons';
-
-interface IUserData {
-    email: string;
-    password: string;
-}
+import { ILoginData } from '../../store/type/interfaces';
 
 function Login() {
     const classes = useStyles();
 
     const [errors, setErrors] = useState('');
 
-    const { register, handleSubmit } = useForm<IUserData>();
+    const { register, handleSubmit } = useForm<ILoginData>();
 
-    const onSubmit = async (data: IUserData) => {
+    const onSubmit = async (data: ILoginData) => {
         console.log(data);
         await axios
             .post(
@@ -100,7 +95,7 @@ function Login() {
                 </div>
                 <div>
                     <Link to="/signup" className={classes.SignupInput}>
-                        회원가입
+                        <p className={classes.SignupText}>회원가입</p>
                     </Link>
                 </div>
             </Paper>

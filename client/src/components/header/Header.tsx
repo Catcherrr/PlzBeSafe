@@ -15,10 +15,13 @@ import { Link } from 'react-router-dom';
 
 type Props = {
     onClick?: React.MouseEventHandler;
+    moving: string;
 };
 
 function Header({ onClick }: Props) {
     const classes = useStyles();
+    const moving =
+        localStorage.getItem('user-token') == null ? '/login' : '/mypage';
     return (
         <AppBar position="static">
             <Toolbar className={classes.toolbar}>
@@ -50,11 +53,13 @@ function Header({ onClick }: Props) {
                             }}
                         />
                     </div>
-                    <Link to="/login" className={classes.user}>
+
+                    <Link to={moving} className={classes.user}>
                         <div className={classes.userIcon}>
                             <AccountCircleIcon />
                         </div>
                     </Link>
+
                     <Link to="/mypage" className={classes.user}>
                         <Typography variant="h6">마이페이지</Typography>
                     </Link>
