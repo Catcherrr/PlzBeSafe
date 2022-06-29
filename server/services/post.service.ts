@@ -1,4 +1,8 @@
+import { Comments } from '../models/comment.model';
+import { CommentReactions } from '../models/comment.reaction.model';
 import { Posts } from '../models/post.model';
+import { PostReactions } from '../models/post.reaction.model';
+import { Users } from '../models/user.model';
 
 export const insertPost = async (post: {
     userId: number;
@@ -35,7 +39,15 @@ export const findAllByPagePosts = (page: number) => {
 };
 
 export const findOneByIdPosts = (id: number) => {
-    return Posts.findOne({ where: { id } });
+    return Posts.findOne({ 
+        include:[{model: Users, as: 'user', attributes: ['name']}, 
+            {model: Comments, as: 'comments', 
+                attributes: ['content', 'updatedAt'],
+                include: [{model: CommentReactions, as:'commentReactions', attributes: ['type', 'createdAt']}, {model: Users, as: 'user', attributes: ['name']}]
+            },
+            {model: PostReactions, as: 'postReactions', attributes: ['type', 'createdAt']}
+        ],
+        where: {id}});
 };
 
 export const deletePosts = (id: number) => {
