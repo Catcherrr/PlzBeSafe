@@ -12,9 +12,7 @@ import {
     Radio,
 } from '@material-ui/core';
 import useStyles from './styles';
-import { Link } from 'react-router-dom';
-import { FieldErrors, useForm } from 'react-hook-form';
-import { useState } from 'react';
+import {useForm } from 'react-hook-form';
 import { IModifyData } from '../../store/type/interfaces';
 import axios from 'axios';
 function Modifyregister() {
