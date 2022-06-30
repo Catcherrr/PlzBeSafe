@@ -77,7 +77,12 @@ Users.hasMany(Posts, {
     onDelete: 'cascade',
     onUpdate: 'cascade',
 });
-Posts.belongsTo(Users);
+Posts.belongsTo(Users, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+});
 
 Users.hasMany(Comments, {
     sourceKey: 'id',
@@ -86,7 +91,12 @@ Users.hasMany(Comments, {
     onDelete: 'cascade',
     onUpdate: 'cascade',
 });
-Comments.belongsTo(Users);
+Comments.belongsTo(Users, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+});
 
 Users.hasMany(Recomments, {
     sourceKey: 'id',
@@ -95,7 +105,12 @@ Users.hasMany(Recomments, {
     onDelete: 'cascade',
     onUpdate: 'cascade',
 })
-Recomments.belongsTo(Users);
+Recomments.belongsTo(Users, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+});
 
 Users.hasMany(PostReactions, {
     sourceKey: 'id',
@@ -104,7 +119,12 @@ Users.hasMany(PostReactions, {
     onDelete: 'cascade',
     onUpdate: 'cascade',
 })
-PostReactions.belongsTo(Users);
+PostReactions.belongsTo(Users, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+});
 
 Users.hasMany(CommentReactions, {
     sourceKey: 'id',
@@ -113,7 +133,12 @@ Users.hasMany(CommentReactions, {
     onDelete: 'cascade',
     onUpdate: 'cascade',
 })
-CommentReactions.belongsTo(Users);
+CommentReactions.belongsTo(Users, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+});
 
 Users.hasMany(RecommentReactions, {
     sourceKey: 'id',
@@ -122,12 +147,17 @@ Users.hasMany(RecommentReactions, {
     onDelete: 'cascade',
     onUpdate: 'cascade',
 })
-RecommentReactions.belongsTo(Users);
+RecommentReactions.belongsTo(Users, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+});
 
 Posts.hasMany(Comments, {
     sourceKey: 'id',
     foreignKey: 'postId',
-    as: 'postHasManyComments',
+    as: 'comments',
     onDelete: 'cascade',
     onUpdate: 'cascade',
 });
@@ -136,7 +166,7 @@ Comments.belongsTo(Posts);
 Posts.hasMany(PostReactions, {
     sourceKey: 'id',
     foreignKey: 'postId',
-    as: 'postHasManyReactions',
+    as: 'postReactions',
     onDelete: 'cascade',
     onUpdate: 'cascade',
 })
@@ -149,12 +179,17 @@ Comments.hasMany(Recomments, {
     onDelete: 'cascade',
     onUpdate: 'cascade',
 })
-Recomments.belongsTo(Comments)
+Recomments.belongsTo(Comments, {
+    foreignKey: 'commentId',
+    as: 'recomments',
+    onDelete: 'cascade',
+    onUpdate: 'cascade',
+})
 
 Comments.hasMany(CommentReactions, {
     sourceKey: 'id',
     foreignKey: 'commentId',
-    as: 'commentHasManyCommentReactions',
+    as: 'commentReactions',
     onDelete: 'cascade',
     onUpdate: 'cascade',
 })
