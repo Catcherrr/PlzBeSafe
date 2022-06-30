@@ -34,3 +34,8 @@ export interface IModifyData {
     gender: number;
     address: string;
 }
+
+//마이페이지 데이터
+export interface IMypageData {
+    jwt: string;
+}

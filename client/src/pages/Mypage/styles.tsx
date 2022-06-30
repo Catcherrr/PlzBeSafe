@@ -14,15 +14,16 @@ export default makeStyles((theme) => ({
         textAlign: 'center',
         alignContent: 'left',
         height: '650px',
-        width: '49%',
+        width: '15%',
         paddingTop: '30px',
         paddingBottom: '30px',
     },
     RightContainer: {
+        paddingTop: '1%',
         alignContent: 'right',
+        textAlign: 'left',
         height: '650px',
-        width: '50%',
-        marginLeft: '1%',
+        width: '90%',
     },
     title: {
         fontWeight: 'bold',
@@ -34,14 +35,24 @@ export default makeStyles((theme) => ({
         fontSize: '10px',
     },
 
-    ModifyregisterInput: {
+    MypageInput: {
         width: '200px',
-        height: '70px',
+        height: '60px',
         color: '#000000',
         textAlign: 'center',
         marginTop: '20px',
         marginBottom: '20px',
-        marginLeft: '35%',
+        marginLeft: '20%',
+    },
+
+    MypageImage: {
+        width: '200px',
+        height: '200px',
+        color: '#000000',
+        textAlign: 'center',
+        marginTop: '20px',
+        marginBottom: '20px',
+        marginLeft: '18%',
     },
 
     InputTitle: {
@@ -49,10 +60,16 @@ export default makeStyles((theme) => ({
         textAlign: 'left',
     },
 
-    ModifyregisterButton: {
+    MypageButton: {
         fontSize: '20px',
         marginTop: '20px',
         marginBottom: '20px',
         marginLeft: '5%',
+    },
+
+    MypageText: {
+        '&:hover': {
+            textDecoration: 'underline',
+        },
     },
 }));

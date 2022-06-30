@@ -43,7 +43,6 @@ function Modifyregister() {
             )
             .then((response) => {
                 console.log(response.data);
-                window.location.href = '/modifyregisterok';
             })
             .catch((error) => {
                 console.log(error.response);
