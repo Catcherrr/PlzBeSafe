@@ -402,7 +402,7 @@ export const modifyImage = async (req: Request, res: Response) => {
 };
 // 회원 탈퇴
 export const resign = async (req: Request, res: Response) => {
-    const { jwt } = req.params;
+    const { jwt } = req.body;
 
     return deleteUser(jwt)
         .then((data: any) => {
