@@ -220,7 +220,7 @@ export const findOnePost = async (req: Request, res: Response) => {
                     message: '글 1개 조회 성공',
                     result: {
                         title: data.title,
-                        writer: data.user.name,
+                        writer: data.postByUser?.name,
                         content: data.content,
                         latitude: data.latitude,
                         longitude: data.longitude,
@@ -230,7 +230,7 @@ export const findOnePost = async (req: Request, res: Response) => {
                         comments: data.comments.map((v:any, i:number)=>{
                             return {
                                 content: v.content,
-                                writer: v.user.name,
+                                writer: v.commenttByUser?.name,
                                 updatedAt: v.updatedAt,
                                 reactionCount: v.commentReactions.length,
                             }

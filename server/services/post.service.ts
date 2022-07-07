@@ -40,10 +40,10 @@ export const findAllByPagePosts = (page: number) => {
 
 export const findOneByIdPosts = (id: number) => {
     return Posts.findOne({ 
-        include:[{model: Users, as: 'user', attributes: ['name']}, 
+        include:[{model: Users, as: 'postByUser'}, 
             {model: Comments, as: 'comments', 
                 attributes: ['content', 'updatedAt'],
-                include: [{model: CommentReactions, as:'commentReactions', attributes: ['type', 'createdAt']}, {model: Users, as: 'user', attributes: ['name']}]
+                include: [{model: CommentReactions, as:'commentReactions', attributes: ['type', 'createdAt']}, {model: Users, as: 'commentByUser', attributes: ['name']}]
             },
             {model: PostReactions, as: 'postReactions', attributes: ['type', 'createdAt']}
         ],
