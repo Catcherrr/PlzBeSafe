@@ -5,6 +5,7 @@ import {
     updateVerify as modifyVerify,
     findByCodeVerify,
     removeVerify,
+    findStatusByEmailVerify,
 } from '../services/verify.service';
 import { statusCode } from '../util/responseForm';
 import { serviceReturnForm, statusTrans } from '../modules/controller.modules';
@@ -13,8 +14,9 @@ import randomString from '../util/randomString';
 const rds = randomString();
 let serviceReturnForm = {};
 
+// 이메일 존재 여부
 export const requestVerify = async (req: Request, res: Response) => {
-    const { email } = req.body;
+    const { email, status } = req.body;
     if (!email) {
         serviceReturnForm = {
             status: statusCode.client_error.noEmail,
@@ -26,65 +28,113 @@ export const requestVerify = async (req: Request, res: Response) => {
         return;
     }
 
-    return createVerify(email)
-        .then(() => {
-            modifyVerify(email, rds, 'req')
-                .then(() => {
-                    sendMail({
-                        to: email,
-                        subject: '[Plz Be Safe] 이메일 인증 요청',
-                        html: `<p>이 <a href="http://localhost:1234/api/verify/check/${rds}">링크</a>를 클릭하시면 인증이 완료됩니다 !</p>`,
-                    })
-                        .then(() => {
-                            serviceReturnForm = {
-                                status: statusCode.ok.defaultValue,
-                                message: '이메일 전송 성공',
-                            };
-                            res.status(
-                                statusTrans(statusCode.ok.defaultValue)
-                            ).json(serviceReturnForm);
+    return findStatusByEmailVerify(email).then((data) => {
+        if(!data)
+            createVerify(email)
+            .then(() => {
+                modifyVerify(email, rds, status)
+                    .then(() => {
+                        sendMail({
+                            to: email,
+                            subject: '[Plz Be Safe] 이메일 인증 요청',
+                            html: `<p>이 <a href="http://localhost:1234/api/verify/check/${rds}">링크</a>를 클릭하시면 인증이 완료됩니다 !</p>`,
                         })
-                        .catch((err: any) => {
-                            console.log(
-                                '[verify/requestVerify/sendMail] ' + err
-                            );
-                            serviceReturnForm = {
-                                status: statusCode.server_error.smtpError,
-                                message: '이메일 전송에 실패했습니다',
-                            };
-                            res.status(
-                                statusTrans(statusCode.server_error.smtpError)
-                            ).json(serviceReturnForm);
-                            return;
-                        });
+                            .then(() => {
+                                serviceReturnForm = {
+                                    status: statusCode.ok.defaultValue,
+                                    message: '이메일 전송 성공',
+                                };
+                                res.status(
+                                    statusTrans(statusCode.ok.defaultValue)
+                                ).json(serviceReturnForm);
+                            })
+                            .catch((err: any) => {
+                                console.log(
+                                    '[verify/requestVerify/sendMail] ' + err
+                                );
+                                serviceReturnForm = {
+                                    status: statusCode.server_error.smtpError,
+                                    message: '이메일 전송에 실패했습니다',
+                                };
+                                res.status(
+                                    statusTrans(statusCode.server_error.smtpError)
+                                ).json(serviceReturnForm);
+                                return;
+                            });
+                    })
+                    .catch((err: any) => {
+                        console.log('[verify/requestVerify] ' + err);
+                        serviceReturnForm = {
+                            status: statusCode.server_error.dbUpdateError,
+                            message: '데이터를 수정하지 못했습니다',
+                        };
+                        res.status(
+                            statusTrans(statusCode.server_error.dbUpdateError)
+                        ).json(serviceReturnForm);
+                        return;
+                    });
+            })
+            .catch((err: any) => {
+                console.log('[verify/requestVerify] ' + err);
+                serviceReturnForm = {
+                    status: statusCode.server_error.dbInsertError,
+                    message: '데이터를 삽입하지 못했습니다',
+                };
+                res.status(statusTrans(statusCode.server_error.dbInsertError)).json(
+                    serviceReturnForm
+                );
+                return;
+            });
+        else
+            modifyVerify(email, rds, status)
+            .then(() => {
+                sendMail({
+                    to: email,
+                    subject: '[Plz Be Safe] 이메일 인증 요청',
+                    html: `<p>이 <a href="http://localhost:1234/api/verify/check/${rds}">링크</a>를 클릭하시면 인증이 완료됩니다 !</p>`,
                 })
-                .catch((err: any) => {
-                    console.log('[verify/requestVerify] ' + err);
-                    serviceReturnForm = {
-                        status: statusCode.server_error.dbUpdateError,
-                        message: '데이터를 수정하지 못했습니다',
-                    };
-                    res.status(
-                        statusTrans(statusCode.server_error.dbUpdateError)
-                    ).json(serviceReturnForm);
-                    return;
-                });
+                    .then(() => {
+                        serviceReturnForm = {
+                            status: statusCode.ok.defaultValue,
+                            message: '이메일 전송 성공',
+                        };
+                        res.status(
+                            statusTrans(statusCode.ok.defaultValue)
+                        ).json(serviceReturnForm);
+                    })
+                    .catch((err: any) => {
+                        console.log(
+                            '[verify/requestVerify/sendMail] ' + err
+                        );
+                        serviceReturnForm = {
+                            status: statusCode.server_error.smtpError,
+                            message: '이메일 전송에 실패했습니다',
+                        };
+                        res.status(
+                            statusTrans(statusCode.server_error.smtpError)
+                        ).json(serviceReturnForm);
+                        return;
+                    });
+            })
+            .catch((err: any) => {
+                console.log('[verify/requestVerify] ' + err);
+                serviceReturnForm = {
+                    status: statusCode.server_error.dbUpdateError,
+                    message: '데이터를 수정하지 못했습니다',
+                };
+                res.status(
+                    statusTrans(statusCode.server_error.dbUpdateError)
+                ).json(serviceReturnForm);
+                return;
+            });
         })
-        .catch((err: any) => {
-            console.log('[verify/requestVerify] ' + err);
-            serviceReturnForm = {
-                status: statusCode.server_error.dbInsertError,
-                message: '데이터를 삽입하지 못했습니다',
-            };
-            res.status(statusTrans(statusCode.server_error.dbInsertError)).json(
-                serviceReturnForm
-            );
-            return;
-        });
-};
+    
 
+    
+};
+// 이메일 인증 코드 확인
 export const completeVerify = async (req: Request, res: Response) => {
-    const num = req.params.num;
+    const {num} = req.params;
     if (!num) {
         serviceReturnForm = {
             status: statusCode.client_error.noVerifyCode,

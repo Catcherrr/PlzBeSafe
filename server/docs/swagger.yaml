@@ -517,6 +517,7 @@
                                                             'example':
                                                                 {
                                                                     'email': 'catcherrr.official@gmail.com',
+                                                                    'status': 'em_req',
                                                                 },
                                                         },
                                                 },

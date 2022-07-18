@@ -6,4 +6,4 @@ content:
             properties:
                 email:
                     type: string
-            example: { email: 'catcherrr.official@gmail.com' }
+            example: { email: 'catcherrr.official@gmail.com', status: 'em_req' }
